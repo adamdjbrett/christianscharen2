@@ -1,0 +1,32 @@
+<section class="section-padding border-top-custom{% if preview_tone %} {{ preview_tone }}{% endif %}" id="{{ preview.id }}">
+  <div class="container">
+    <div class="row mb-5 reveal">
+      <div class="col-lg-8">
+        <span class="font-sans text-uppercase text-accent tracking-wider text-sm d-block mb-3">{{ preview.info }}</span>
+        <h2 class="section-heading">{{ preview.title }}</h2>
+      </div>
+    </div>
+    <div class="row reveal" style="transition-delay: 0.2s;">
+      <div class="col-12">
+        <div class="border-top-custom">
+          {% for item in preview_items %}
+          <a href="{{ item.url }}" class="{% if preview_kind == 'event' %}article-item{% else %}articles-item{% endif %}">
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <span class="article-meta">{{ item.date | postDate }}{% if preview_kind == 'event' %}<br>{{ item.data.time }}{% endif %}</span>
+              </div>
+              <div class="col-md-9">
+                <h3 class="article-title">{{ item.data.title }}</h3>
+                {% if preview_kind == 'event' %}<p>{{ item.data.venue }} | {{ item.data.city }}</p>{% endif %}
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+        <div class="col-12 mc-auto p-3 p-md-5 text-center">
+          <a href="{{ preview.button.url }}" class="btn-editorial">{{ preview.button.text }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

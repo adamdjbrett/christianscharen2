@@ -1,0 +1,14 @@
+{% if image %}
+{% set is_author = 'christianscharen-author' in image %}
+{% set is_book = image == '/img/bookcover.webp' %}
+{% if is_author %}<picture>
+  <source type="image/webp" srcset="/img/christianscharen-author-800.webp 800w, /img/christianscharen-author-1200.webp 1200w, /img/christianscharen-author-1600.webp 1600w" sizes="(min-width: 60rem) 55vw, 100vw">
+{% endif %}
+{% if is_book %}<a class="image-link" href="{{ image }}" aria-label="View full-size {{ title }} image">{% endif %}
+<img src="{% if is_book %}/img/bookcover_tn.webp{% else %}{{ image }}{% endif %}" alt="{{ title }}" class="img-fluid rounded-3 my-4"
+  width="{% if is_author %}2169{% elif is_book %}700{% else %}1200{% endif %}"
+  height="{% if is_author %}1500{% elif is_book %}1047{% else %}1795{% endif %}"
+  loading="lazy" decoding="async">
+{% if is_book %}</a>{% endif %}
+{% if is_author %}</picture>{% endif %}
+{% endif %}

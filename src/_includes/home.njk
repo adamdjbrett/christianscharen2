@@ -1,0 +1,19 @@
+---
+layout: default.njk
+---
+{% include "partials/home/hero.njk"%}
+{% include "partials/home/custer.njk"%}
+{% include "partials/home/after_laura.njk"%}
+{% include "partials/home/newsletter_speaking.njk"%}
+{% set preview = events %}
+{% set preview_items = collections.events | limit(3) %}
+{% set preview_kind = "event" %}
+{% set preview_tone = "grey" %}
+{% include "partials/home/collection_preview.njk" %}
+{% include "partials/home/about_contact.njk"%}
+{% set preview = writing %}
+{% set preview_items = collections.writings | filterByTags(site.featured_tags) | limit(5) %}
+{% set preview_kind = "writing" %}
+{% set preview_tone = "" %}
+{% include "partials/home/collection_preview.njk" %}
+{% include "partials/home/selected_books.njk" %}

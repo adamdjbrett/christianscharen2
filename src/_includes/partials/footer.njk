@@ -1,0 +1,16 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-meta">
+      <p><a href="/">{{ site.title }}</a> · {{ site.copyright }} · <a href="mailto:{{ site.author.email }}">Email</a></p>
+      <ul class="social-links" aria-label="{{ site.author.name }} elsewhere">
+        {% for social in site.author.social_links %}
+        <li>
+          <a href="{{ social.url }}" aria-label="{{ social.name }}">
+            <img src="/icons/{{ social.icon }}.svg" width="20" height="20" alt="">
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</footer>

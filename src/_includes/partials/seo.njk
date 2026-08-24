@@ -1,0 +1,86 @@
+{% set seo_title = title or site.title %}
+{% set seo_description = description or site.description %}
+{% set seo_author = author.name or site.author.name or site.author %}
+{% set seo_image = image or site.author.image %}
+{% set seo_type = 'website' if page.url == '/' else 'article' %}
+<title>{{ seo_title }}</title>
+<meta name="description" content="{{ seo_description }}">
+<meta name="author" content="{{ seo_author }}">
+<meta name="robots" content="index, follow">
+<meta name="generator" content="BuildAwesome 4.0.0-alpha.10">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<link rel="generator" href="https://www.npmjs.com/package/@awesome.me/buildawesome/v/4.0.0-alpha.10" title="BuildAwesome 4.0.0-alpha.10">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml" title="Sitemap">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-serif-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+{% if page.url == '/' %}<link rel="preload" as="image" type="image/webp" href="/img/christianscharen-author-800.webp" imagesrcset="/img/christianscharen-author-800.webp 800w, /img/christianscharen-author-1200.webp 1200w, /img/christianscharen-author-1600.webp 1600w" imagesizes="(min-width: 60rem) 45vw, 100vw" fetchpriority="high">{% endif %}
+<meta property="og:title" content="{{ seo_title }}">
+<meta property="og:description" content="{{ seo_description }}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:type" content="{{ seo_type }}">
+<meta property="og:site_name" content="{{ site.title }}">
+{% if seo_image %}
+<meta property="og:image" content="{{ site.url }}{{ seo_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ seo_title }}">
+{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@{{ site.author.social.twitter or site.social.twitter }}">
+<meta name="twitter:creator" content="@{{ site.author.social.twitter or site.social.twitter }}">
+<meta name="twitter:title" content="{{ seo_title }}">
+<meta name="twitter:description" content="{{ seo_description }}">
+{% if seo_image %}<meta name="twitter:image" content="{{ site.url }}{{ seo_image }}">{% endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ 'WebSite' if page.url == '/' else 'Article' }}",
+  "headline": "{{ seo_title }}",
+  "description": "{{ seo_description }}",
+  "url": "{{ site.url }}{{ page.url }}",
+  {% if seo_image %}"image": "{{ site.url }}{{ seo_image }}",{% endif %}
+  {% if date %}
+  "datePublished": "{{ date | formatDate }}",
+  "dateModified": "{{ date | formatDate }}",
+  {% endif %}
+  "author": {
+    "@type": "Person",
+    "name": "{{ seo_author }}",
+    "url": "{{ site.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title }}"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ page.url }}"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.url }}"
+    }{% if page.url != '/' %},{% endif %}
+    {% if page.url != '/' %}
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ seo_title }}",
+      "item": "{{ site.url }}{{ page.url }}"
+    }
+    {% endif %}
+  ]
+}
+</script>

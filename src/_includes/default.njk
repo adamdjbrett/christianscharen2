@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ site.language or 'en' }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script>{{ criticalJs | safe }}</script>
+{% include "partials/seo.njk"%}
+<style>{{ criticalCss | safe }}</style>
+<link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+{% include "partials/nav.njk"%}
+<main id="main-content">
+{{ content | safe }}
+</main>
+{% include "partials/footer.njk"%}
+{% include "partials/scripts.njk"%}
+</body>
+</html>

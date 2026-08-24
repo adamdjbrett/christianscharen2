@@ -1,0 +1,33 @@
+{% set items = collections[pagination_collection] %}
+{% if items %}
+{% for item in items %}
+{% if item.url == page.url %}
+{% set previous = items[loop.index0 - 1] if loop.index0 > 0 %}
+{% set next = items[loop.index0 + 1] if loop.index0 + 1 < items.length %}
+{% if previous or next %}
+<section class="section-padding border-top-custom mt-5" aria-label="{{ pagination_label }} pagination">
+  <div class="container">
+    <div class="row g-4">
+      {% if previous %}
+      <div class="col-md-6">
+        <a href="{{ previous.url }}" class="text-decoration-none d-block p-4 border rounded-3 bg-light-hover transition">
+          <span class="d-block text-muted small text-uppercase tracking-wide mb-2"><span class="me-2">{% icon "arrow-left" %}</span> Previous {{ pagination_label }}</span>
+          <h2 class="fs-4 mb-0 text-dark">{{ previous.data.title }}</h2>
+        </a>
+      </div>
+      {% endif %}
+      {% if next %}
+      <div class="col-md-6 {% if not previous %}offset-md-6{% endif %}">
+        <a href="{{ next.url }}" class="text-decoration-none d-block p-4 border rounded-3 bg-light-hover transition text-md-end">
+          <span class="d-block text-muted small text-uppercase tracking-wide mb-2">Next {{ pagination_label }} <span class="ms-2">{% icon "arrow-right" %}</span></span>
+          <h2 class="fs-4 mb-0 text-dark">{{ next.data.title }}</h2>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}

@@ -1,0 +1,50 @@
+---
+layout: layout.njk
+title: Other Writing
+description: Archives & Essays by Christian Scharen
+hero: 
+  title: Other Writing
+  info: Archives & Essays
+pagination:
+  data: collections.writings
+  size: 5
+  reverse: true
+permalink: "/writings/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+---
+<section class="section-padding border-top-custom">
+    <div class="container">
+        <div class="row mb-5 reveal">
+            <div class="col-lg-8">
+                <span class="font-sans text-uppercase text-accent tracking-wider text-sm d-block mb-3">{{hero.info}}</span>
+                <h1 class="section-heading">{{hero.title}}</h1>
+            </div>
+        </div>
+        <div class="row reveal" style="transition-delay: 0.2s;">
+            <div class="col-12">
+                <div class="border-top-custom">
+                    {% for post in pagination.items %}
+                    <a href="{{ post.url }}" class="article-item">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <span class="article-meta">{{ post.data.category or post.data.tags[0] or "Uncategorized" }}</span>
+                            </div>
+                            <div class="col-md-9">
+                                <h3 class="article-title">{{ post.data.title }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+                <div class="editorial-pagination">
+                    {% if pagination.href.previous %}
+                    <a href="{{ pagination.href.previous }}" aria-label="Previous">{% icon "arrow-left" %}</a>
+                    {% endif %}
+                    <span class="current-page">{{ pagination.pageNumber + 1 }} of {{ pagination.pages.length }}</span>
+                    {% if pagination.href.next %}
+                    <a href="{{ pagination.href.next }}" aria-label="Next">{% icon "arrow-right" %}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

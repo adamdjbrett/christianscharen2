@@ -1,0 +1,82 @@
+title: "Christian Scharen"
+description: "Writing, books, and public work by practical theologian Christian Scharen."
+url: "https://christianscharen.com"
+language: "en"
+locale: "en_US"
+copyright: "2026 Christian Scharen."
+icon: /favicon.svg
+image: /img/christianscharen-author.webp
+
+author:
+  name: "Christian Scharen"
+  email: "christian.scharen@gmail.com"
+  bio: "Christian Scharen is a writer, thinker, and speaker. He writes about faith, culture, and the human experience."
+  tagline: "Practical theologian & writer"
+  image: /img/christianscharen-author.webp
+  location: "Minneapolis, MN"
+  website: "https://christianscharen.com"
+  social:
+    twitter: "christianscharen"
+    github: "christianscharen"
+    linkedin: "christianscharen"
+  social_links:
+    - name: Instagram
+      icon: instagram
+      url: "https://www.instagram.com/chrisscharen/"
+    - name: LSTC
+      icon: graduation-cap
+      url: "https://lstc.edu/academics/faculty/christian-scharen/"
+    - name: LinkedIn
+      icon: linkedin
+      url: "https://www.linkedin.com/in/christian-scharen-30542216/"
+    - name: Google Scholar
+      icon: google-scholar
+      url: "https://scholar.google.com/citations?user=u2SH3YgAAAAJ&hl=en&oi=ao"
+    - name: Academia
+      icon: academia
+      url: "https://lstc.academia.edu/ChristianScharen"
+    - name: ORCID
+      icon: orcid
+      url: "https://orcid.org/0009-0009-0212-3016"
+
+social:
+  twitter: "https://twitter.com/christianscharen"
+  github: "https://github.com/christianscharen"
+
+featured_tags:
+  - "writing"
+  - "about"
+  - "bio"
+
+contact:
+  id: about
+  title: Get in Touch
+  button: Send Message
+
+selected_books:
+  title: Selected Books
+  groups:
+    - title: Practical Theology
+      items:
+        - name: Ethnography as Christian Theology and Ethics
+          url: "#"
+        - name: Christian Practical Wisdom
+          url: "#"
+        - name: Fieldwork in Theology
+          url: "#"
+        - name: Faith as a Way of Life
+          url: "#"
+    - title: Music and religion
+      items:
+        - name: Someone Has To Care
+          url: "#"
+        - name: Broken Hallelujahs
+          url: "#"
+        - name: One Step Closer
+          url: "#"
+
+representation:
+  title: Representation
+  list:
+    - name: Direct Contact
+      info: christian.scharen@gmail.com

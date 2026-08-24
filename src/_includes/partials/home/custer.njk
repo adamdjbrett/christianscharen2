@@ -1,0 +1,33 @@
+<section class="section-padding border-top-custom" id="{{custer.id}}">
+        <div class="container">
+            <div class="row align-items-center gx-lg-5">
+                <div class="col-lg-5 mb-5 mb-lg-0 reveal">
+                    {% set book = custer %}
+                    {% set book_image_class = "img-fluid" %}
+                    {% include "partials/book_cover.njk" %}
+                </div>
+                <div class="col-lg-6 offset-lg-1 reveal" style="transition-delay: 0.2s;">
+                    <span class="font-sans text-uppercase text-accent tracking-wider text-sm d-block mb-3">{{custer.info}}</span>
+                    <h2 class="section-heading">{% if custer.url %}<a href="{{custer.url}}" class="fw-bold text-dark">{{custer.title}}</a>{% else %}{{custer.title}}{% endif %}</h2>
+                    <p class="mb-4 text-muted fs-5">
+                        {{custer.description}}
+                    </p>
+                    <div class="mb-5">
+                        {{custer.text | md | safe }}
+                    </div>
+                    <div class="d-flex flex-wrap gap-3">
+                        {% if custer.button.url and custer.button.url != "#" %}
+                        <a href="{{custer.button.url}}" class="btn-editorial">{{custer.button.text}}</a>
+                        {% endif %}
+                        {% if custer.button1.url and custer.button1.url != "#" %}
+                        <a href="{{custer.button1.url}}" class="btn-editorial secondary-link">{{custer.button1.text}}</a>
+                        {% endif %}
+                    </div>
+                    <div class="editorial-quote">
+                        <p class="mb-2">“{{custer.blockquote.text}}”</p>
+                        {% if custer.blockquote.footer and "[" not in custer.blockquote.footer %}<p class="footers font-sans text-uppercase text-sm mt-3 text-muted">— {{custer.blockquote.footer}}</p>{% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

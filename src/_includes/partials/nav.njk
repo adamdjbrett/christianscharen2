@@ -1,0 +1,27 @@
+{% macro links(items) %}
+{% for n in items %}
+<li><a href="{% if nav_home %}/{% endif %}{{ n.url }}">{{ n.text }}</a></li>
+{% endfor %}
+{% endmacro %}
+<nav class="site-nav" aria-label="Primary">
+  <a class="site-wordmark" href="/" aria-label="{{ site.title }} — home">
+    <span>{{ site.title }}</span>
+  </a>
+  <ul class="site-nav-links">
+    {{ links(navigation.primary) }}
+  </ul>
+  <div class="rail-meta">
+    {% if nav_home %}<a href="/">Home</a>{% else %}
+    <span>{{ site.author.tagline }}</span>
+    {% endif %}
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Dark mode</button>
+  </div>
+  <details class="site-index-shell">
+    <summary class="site-index-toggle">Index</summary>
+    <div class="site-index">
+      <ul>
+        {{ links(navigation.primary) }}
+      </ul>
+    </div>
+  </details>
+</nav>

@@ -1,0 +1,42 @@
+---
+layout: layout.njk
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: "/tags/{{ tag }}/"
+---
+
+<section class="section-padding border-top-custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="section-heading mb-4">Posts tagged "{{ tag }}"</h1>
+                
+                {% set tagPosts = collections[tag] %}
+                {% if tagPosts %}
+                <div class="border-top-custom">
+                    {% for post in tagPosts | reverse %}
+                    <a href="{{ post.url }}" class="article-item">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <span class="article-meta">{{ post.date | postDate }}</span>
+                            </div>
+                            <div class="col-md-9">
+                                <h3 class="article-title">{{ post.data.title }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted">No posts found with this tag.</p>
+                {% endif %}
+                
+                <div class="mt-4">
+                    <a href="/tags/" class="btn-editorial">← View All Tags</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

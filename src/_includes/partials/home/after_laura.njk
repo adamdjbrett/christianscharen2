@@ -1,0 +1,25 @@
+<section class="section-padding border-top-custom" id="{{after_laura.id}}">
+        <div class="container">            
+            <div class="row align-items-center gx-lg-5 flex-lg-row-reverse">
+                <div class="col-lg-6 reveal" style="transition-delay: 0.2s;">
+                    <span class="font-sans text-uppercase text-accent tracking-wider text-sm d-block mb-3">{{ after_laura.info }}</span>
+                    <h2 class="section-heading">{% if after_laura.url %}<a href="{{ after_laura.url }}" class="fw-bold text-dark">{{ after_laura.title }}</a>{% else %}{{ after_laura.title }}{% endif %}</h2>
+                    {% for m in after_laura.text %}
+                    <div class="mb-4 text-muted">
+                        {{ m.article |md |safe }}
+                    </div>
+                    {% endfor %}                    
+                    {% if after_laura.button.url and after_laura.button.url != "#" %}<div>
+                        <a href="{{after_laura.button.url}}" class="btn-editorial">
+                            {{after_laura.button.text}}</a>
+                    </div>{% endif %}
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5 mb-5 mb-lg-0 reveal">
+                    {% set book = after_laura %}
+                    {% set book_image_class = "img-cover" %}
+                    {% include "partials/book_cover.njk" %}
+                </div>
+            </div>
+        </div>
+</section>
