@@ -1,0 +1,31 @@
+name: Deploy to Xmit
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: xmit-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Deploy chris2.xmit.dev
+        run: npx --yes @xmit.co/xmit@0.5.2-0 chris2.xmit.dev _site
+        env:
+          # Create this repository secret from an API key owned by Xmit team 626.
+          XMIT_KEY: ${{ secrets.XMIT_KEY }}
