@@ -16,8 +16,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: npm
@@ -27,5 +27,5 @@ jobs:
       - name: Deploy chris2.xmit.dev
         run: npx --yes @xmit.co/xmit@0.5.2-0 chris2.xmit.dev _site
         env:
-          # Create this repository secret from an API key owned by Xmit team 626.
+          # Create this repository secret from an API key owned by XMIT team 626.
           XMIT_KEY: ${{ secrets.XMIT_KEY }}
