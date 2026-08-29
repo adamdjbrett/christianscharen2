@@ -35,7 +35,7 @@ button,input,textarea{font:inherit}
 .hero-description{max-width:38ch;margin-block-end:var(--space-xl);color:var(--color-ink-2);font-family:var(--font-display);font-size:var(--text-md);line-height:1.45}
 .hero-scroll,.btn-editorial{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);min-height:var(--control-height);padding-inline:var(--space-lg);border:var(--rule-hairline) solid var(--color-ink);border-radius:var(--radius-button);background:var(--color-ink);color:var(--color-paper);font-size:var(--text-sm);font-weight:600;text-decoration:none;white-space:nowrap;transition:background-color var(--dur-short) var(--ease-out),color var(--dur-short) var(--ease-out),transform var(--dur-micro) var(--ease-out)}
 .hero-portrait{margin:0;border:var(--rule-hairline) solid var(--color-rule)}
-.hero-portrait img{width:100%;aspect-ratio:4 / 5;object-fit:cover;filter:grayscale(1) contrast(1.03)}
+.hero-portrait img{width:100%;aspect-ratio:4 / 5;object-fit:cover}
 .section-padding{padding-block:var(--space-3xl)}
 .border-top-custom{border-block-start:var(--rule-hairline) solid var(--color-rule)}
 .border-bottom-custom{border-block-end:var(--rule-hairline) solid var(--color-rule)}
@@ -46,7 +46,7 @@ button,input,textarea{font:inherit}
 #custer{padding-block:var(--space-4xl) var(--space-3xl)}
 #after-laura{padding-block:var(--space-2xl) var(--space-4xl)}
 #about{padding-block:var(--space-4xl)}
-#custer img,#after-laura img,#about img{width:100%;border:var(--rule-hairline) solid var(--color-rule);filter:grayscale(1)}
+#custer img,#after-laura img,#about img{width:100%;border:var(--rule-hairline) solid var(--color-rule)}
 #custer img,#after-laura img{aspect-ratio:2 / 3;object-fit:cover}
 #about img{aspect-ratio:4 / 5;object-fit:cover}
 .editorial-quote,blockquote{max-width:38ch;margin:var(--space-xl) 0;padding-block-start:var(--space-lg);border-block-start:var(--rule-hairline) solid var(--color-rule);color:var(--color-ink-2);font-family:var(--font-display);font-size:var(--text-md);font-style:italic;line-height:1.45}
@@ -81,7 +81,10 @@ textarea.form-editorial{min-height:var(--space-4xl);resize:vertical}
 .social-links a:hover::after,.social-links a:focus::after{opacity:1;transform:translate(-50%,0)}
 .social-links img{width:1.25rem;height:1.25rem;filter:grayscale(1)}
 .image-link{display:block;cursor:zoom-in}
-a[href^="http"]:not([href^="https://christianscharen.com"]):not(.social-links a)::after{content:"↗";margin-inline-start:0.2em;font-family:var(--font-body);font-size:0.8em;line-height:1}
+.selected-books-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-xl) var(--space-md)}
+.selected-book{display:grid;align-content:start;gap:var(--space-sm);font-family:var(--font-display);font-weight:600;line-height:1.25;text-decoration:none}
+.selected-book img{width:100%;aspect-ratio:2 / 3;object-fit:cover;border:var(--rule-hairline) solid var(--color-rule)}
+a[href^="http"]:not([href^="https://christianscharen.com"]):not(.social-links a):not(.selected-book):not(.image-link)::after{content:"↗";margin-inline-start:0.2em;font-family:var(--font-body);font-size:0.8em;line-height:1}
 .row{display:flex;flex-wrap:wrap;gap:var(--space-lg) 0;margin-inline:calc(var(--space-sm) * -1)}
 .row>*{width:100%;min-width:0;padding-inline:var(--space-sm)}
 .g-0{gap:0;margin:0}

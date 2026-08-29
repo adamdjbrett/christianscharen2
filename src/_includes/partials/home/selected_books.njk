@@ -7,15 +7,14 @@
         {% for group in site.selected_books.groups %}
         <div class="col-md-5 {% if loop.index0 %}offset-md-2 {% endif %}p-3">
             <h3 class="mb-4 fw-bold">{{ group.title }}</h3>
+            <div class="selected-books-grid">
              {% for item in group.items %}
-                        {% if item.url and item.url != "#" %}<a href="{{ item.url }}" class="articles-item">{% else %}<div class="articles-item">{% endif %}
-                            <div class="row align-items-center">
-                                <div class="col-md-12">
-                                    <p>{{ item.name }}</p>
-                                </div>
-                            </div>
-                        {% if item.url and item.url != "#" %}</a>{% else %}</div>{% endif %}
-                        {% endfor %}
+              <a href="{{ item.url }}" class="selected-book">
+                <img src="{{ item.image }}" alt="{{ item.name }} book cover" loading="lazy" decoding="async">
+                <span>{{ item.name }}</span>
+              </a>
+              {% endfor %}
+            </div>
         </div>
         {% endfor %}
     </div>

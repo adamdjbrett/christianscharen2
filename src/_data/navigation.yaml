@@ -1,4 +1,6 @@
 primary:
+  - text: "About"
+    url: "#about"
   - text: "Custer"
     url: "#custer"
   - text: "After Laura"
@@ -11,5 +13,3 @@ primary:
     url: "#speaking"
   - text: "Events"
     url: "#events"
-  - text: "About"
-    url: "#about"

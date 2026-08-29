@@ -19,6 +19,13 @@ const [tokens, css, nav, footer, seo, favicon, criticalScript, loader, layout, c
   readFile("src/_includes/partials/article.njk", "utf8"),
   readFile("src/_includes/home.njk", "utf8")
 ]);
+const [navigationData, indexData, hero, about, selectedBooks] = await Promise.all([
+  readFile("src/_data/navigation.yaml", "utf8"),
+  readFile("src/index.md", "utf8"),
+  readFile("src/_includes/partials/home/hero.njk", "utf8"),
+  readFile("src/_includes/partials/home/about_contact.njk", "utf8"),
+  readFile("src/_includes/partials/home/selected_books.njk", "utf8")
+]);
 
 assert.match(tokens, /html\[data-theme="dark"\]/);
 assert.match(css, /overflow-x:\s*clip/);
@@ -48,6 +55,15 @@ assert.match(entry, /partials\/pagination\.njk/);
 assert.match(pageLayout, /partials\/article\.njk/);
 assert.match(article, /partials\/content_image\.njk/);
 assert.equal([...home.matchAll(/partials\/home\/collection_preview\.njk/g)].length, 2);
+assert.ok(home.indexOf("about_contact.njk") < home.indexOf("custer.njk"));
+assert.match(navigationData, /^primary:\n  - text: "About"/);
+assert.doesNotMatch(hero, /hero-subtitle|hero-description/);
+assert.match(indexData, /Christian Scharen is the Gordon Braatz Chair/);
+assert.match(about, /Hi-res photo/);
+assert.match(about, /Full CV/);
+assert.match(selectedBooks, /item\.image/);
+assert.doesNotMatch(css, /\.hero-portrait img\{[^}]*grayscale/);
+assert.doesNotMatch(css, /#custer img,#after-laura img,#about img\{[^}]*grayscale/);
 assert.match(critical, /\.hero/);
 assert.equal(minifyCss("a { color: red; } /* x */"), "a{color:red}");
 assert.doesNotMatch(css, /#[0-9a-f]{3,8}\b/i);

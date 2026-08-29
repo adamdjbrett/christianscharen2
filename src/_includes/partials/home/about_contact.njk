@@ -8,10 +8,13 @@
         </picture>
       </div>
       <div class="col-lg-7 offset-lg-1">
-        <p class="font-sans text-muted text-sm">{{ about.info }}</p>
         <h2 class="section-heading">{{ about.title }}</h2>
         <div>{{ about.text | md | safe }}</div>
-        <p class="mt-4"><a class="btn-editorial" href="mailto:{{ speaking.email }}">Email Christian</a></p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a class="btn-editorial" href="/img/christianscharen-author.webp">Hi-res photo</a>
+          <a class="btn-editorial secondary-link" href="https://lstc.academia.edu/ChristianScharen/CurriculumVitae">Full CV</a>
+          <a class="btn-editorial secondary-link" href="mailto:{{ speaking.email }}">Email Christian</a>
+        </div>
       </div>
     </div>
   </div>

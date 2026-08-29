@@ -45,8 +45,6 @@ social:
 
 featured_tags:
   - "writing"
-  - "about"
-  - "bio"
 
 contact:
   id: about
@@ -59,21 +57,28 @@ selected_books:
     - title: Practical Theology
       items:
         - name: Ethnography as Christian Theology and Ethics
-          url: "#"
+          url: "https://www.bloomsbury.com/us/ethnography-as-christian-theology-and-ethics-9780567710468/"
+          image: /img/ethnography-cover.jpg
         - name: Christian Practical Wisdom
-          url: "#"
+          url: "https://www.eerdmans.com/9781467445061/christian-practical-wisdom/"
+          image: /img/christian-practical-wisdom-cover.jpg
         - name: Fieldwork in Theology
-          url: "#"
+          url: "https://bakerpublishinggroup.com/products/9780801049309_fieldwork-in-theology"
+          image: /img/fieldwork-in-theology-cover.jpg
         - name: Faith as a Way of Life
-          url: "#"
+          url: "https://www.eerdmans.com/9780802862310/faith-as-a-way-of-life/"
+          image: /img/faith-as-a-way-of-life-cover.jpg
     - title: Music and religion
       items:
         - name: Someone Has To Care
-          url: "#"
+          url: "https://wipfandstock.com/9781532612183/someone-has-to-care/"
+          image: /img/someone-has-to-care-cover.jpg
         - name: Broken Hallelujahs
-          url: "#"
+          url: "https://brazospress.com/"
+          image: /img/broken-hallelujahs-cover.jpg
         - name: One Step Closer
-          url: "#"
+          url: "https://brazospress.com/"
+          image: /img/one-step-closer-cover.jpg
 
 representation:
   title: Representation

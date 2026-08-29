@@ -38,7 +38,7 @@ button, input, textarea { font: inherit; }
 .hero-description { max-width: 38ch; margin-block-end: var(--space-xl); color: var(--color-ink-2); font-family: var(--font-display); font-size: var(--text-md); line-height: 1.45; }
 .hero-scroll, .btn-editorial { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs); min-height: var(--control-height); padding-inline: var(--space-lg); border: var(--rule-hairline) solid var(--color-ink); border-radius: var(--radius-button); background: var(--color-ink); color: var(--color-paper); font-size: var(--text-sm); font-weight: 600; text-decoration: none; white-space: nowrap; }
 .hero-portrait { margin: 0; border: var(--rule-hairline) solid var(--color-rule); }
-.hero-portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(1) contrast(1.03); }
+.hero-portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 .section-padding { padding-block: var(--space-3xl); }
 .border-top-custom { border-block-start: var(--rule-hairline) solid var(--color-rule); }
 .section-heading { max-width: 15ch; min-width: 0; margin-block-end: var(--space-lg); font-size: var(--text-display-s); line-height: 1.02; letter-spacing: -0.04em; overflow-wrap: anywhere; }

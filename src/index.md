@@ -7,11 +7,6 @@ image: /img/christianscharen-author.webp
 hero: 
  id: "home"
  title: Christian Scharen
- info: Practical Theologian & Writer
- description: Exploring the intersections of faith, culture, and the art of living through deep theological grounding and honest storytelling.
- button: 
-   text: Scroll to Discover
-   url: "#custer"
 
 custer: 
   info: Latest Release
@@ -83,16 +78,9 @@ events:
 about: 
   title: About
   id: about
-  info: Biography
   image: /img/christianscharen-author.webp
   text: |
-    A practical theologian, he was ordained a pastor in the ELCA in 2001. He holds the Ph.D. in Religion from Emory University and has written or edited more than a dozen books and many articles, book chapters, and research reports.
-
-    His research and writing focuses on theology, worship and the arts, pastoral leadership, social justice, and theological education. His early work on theological ethnography helped spark an international movement bringing together sociology and theology in the study of the church.
-
-    His most recent book is co-authored with Aana Vigen, Ethnography as Christian Theology and Ethics: A Completely Revised 2nd Edition (T&T Clark). He is currently working on a decolonial theological memoir about his family, the Ingalls of The Little House on the Prairie books, and a book on Christian worship before and after Christianity became the religion of Empire.
-
-    He enjoys cooking, poetry, and music, especially learning to play on his grandfather’s 1910 Washburn bowl back mandolin. He is married to Pierrette Comulada, and together they have three adult children, Isaiah, Finn, and Owen, and a bulldog named Walt.
+    Christian Scharen is the Gordon Braatz Chair and Professor of Practical Theology at the Lutheran School of Theology at Chicago. He is author of two forthcoming books dealing with America's—and his family's—pioneer past. *After Laura: Notes on Inheriting a Pioneer Legacy in America* will be published by TBA in late 2027. *Custer Died for Our Sins: A Practical Theology of Repair* will be published by Fortress Press also in late 2027. He has written more than a dozen other books and scores of articles, chapters, and reports on a wide variety of topics. An ordained Lutheran pastor, he received his PhD in Religion from Emory University. Raised in Montana, he currently lives in Chicago with his wife and French bulldog.
 
 
 ---
