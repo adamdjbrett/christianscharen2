@@ -58,27 +58,27 @@ selected_books:
       items:
         - name: Ethnography as Christian Theology and Ethics
           url: "https://www.bloomsbury.com/us/ethnography-as-christian-theology-and-ethics-9780567710468/"
-          image: /img/ethnography-cover.jpg
+          image: /img/ethnography-cover.webp
         - name: Christian Practical Wisdom
           url: "https://www.eerdmans.com/9781467445061/christian-practical-wisdom/"
-          image: /img/christian-practical-wisdom-cover.jpg
+          image: /img/christian-practical-wisdom-cover.webp
         - name: Fieldwork in Theology
           url: "https://bakerpublishinggroup.com/products/9780801049309_fieldwork-in-theology"
-          image: /img/fieldwork-in-theology-cover.jpg
+          image: /img/fieldwork-in-theology-cover.webp
         - name: Faith as a Way of Life
           url: "https://www.eerdmans.com/9780802862310/faith-as-a-way-of-life/"
-          image: /img/faith-as-a-way-of-life-cover.jpg
+          image: /img/faith-as-a-way-of-life-cover.webp
     - title: Music and religion
       items:
         - name: Someone Has To Care
           url: "https://wipfandstock.com/9781532612183/someone-has-to-care/"
-          image: /img/someone-has-to-care-cover.jpg
+          image: /img/someone-has-to-care-cover.webp
         - name: Broken Hallelujahs
           url: "https://brazospress.com/"
-          image: /img/broken-hallelujahs-cover.jpg
+          image: /img/broken-hallelujahs-cover.webp
         - name: One Step Closer
           url: "https://brazospress.com/"
-          image: /img/one-step-closer-cover.jpg
+          image: /img/one-step-closer-cover.webp
 
 representation:
   title: Representation

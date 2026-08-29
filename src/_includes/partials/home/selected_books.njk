@@ -10,7 +10,7 @@
             <div class="selected-books-grid">
              {% for item in group.items %}
               <a href="{{ item.url }}" class="selected-book">
-                <img src="{{ item.image }}" alt="{{ item.name }} book cover" loading="lazy" decoding="async">
+                <img src="{{ item.image }}" alt="{{ item.name }} book cover" width="500" height="750" loading="lazy" decoding="async">
                 <span>{{ item.name }}</span>
               </a>
               {% endfor %}
