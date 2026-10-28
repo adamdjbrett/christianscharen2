@@ -1,25 +1,22 @@
-title: "Christian Scharen"
-description: "Writing, books, and public work by practical theologian Christian Scharen."
-url: "https://chris2.xmit.dev"
-language: "en"
-locale: "en_US"
-copyright: "2026 Christian Scharen."
-icon: /favicon.svg
-image: /img/christianscharen-author.webp
+# Site-wide settings, read by every page as site.*
 
+title: "Christian Scharen"  # site name: tabs, feeds, nav
+description: "Writing, books, and public work by practical theologian Christian Scharen."  # default meta description
+url: "https://chris2.xmit.dev"  # live address, no trailing slash
+language: "en"  # page language
+
+land_acknowledgement: |  # footer text, markdown
+  I acknowledge with respect the Bodwéwadmi (Potawatomi) people on whose unceded and ancestral lands I reside in what is now called Chicago. To find the Indigenous origins of the land where you live, visit the [Native Land project](https://native-land.ca/).
+
+# About Christian
 author:
-  name: "Christian Scharen"
-  email: "christian.scharen@gmail.com"
-  bio: "Christian Scharen is a writer, thinker, and speaker. He writes about faith, culture, and the human experience."
-  tagline: "Practical theologian & writer"
-  image: /img/christianscharen-author.webp
-  location: "Minneapolis, MN"
-  website: "https://christianscharen.com"
-  social:
-    twitter: "christianscharen"
-    github: "christianscharen"
-    linkedin: "christianscharen"
-  social_links:
+  name: "Christian Scharen"  # byline, metadata, feeds
+  email: "christian.scharen@gmail.com"  # the only copy; all email links use it
+  bio: "Christian Scharen is a writer, thinker, and speaker. He writes about faith, culture, and the human experience."  # profile metadata
+  tagline: "Practical theologian & writer"  # under the nav
+  image: /assets/images/christianscharen-author.webp  # default share image
+  location: "Minneapolis, MN"  # profile metadata
+  social_links:  # footer icons; icon = file in assets/icons
     - name: Instagram
       icon: instagram
       url: "https://www.instagram.com/chrisscharen/"
@@ -39,49 +36,46 @@ author:
       icon: orcid
       url: "https://orcid.org/0009-0009-0212-3016"
 
-social:
-  twitter: "https://twitter.com/christianscharen"
-  github: "https://github.com/christianscharen"
-
-featured_tags:
+featured_tags:  # tags shown in the home Writing list
   - "writing"
 
+# About section
 contact:
-  id: about
-  title: Get in Touch
-  button: Send Message
+  links:  # buttons under the About text; first is solid
+    - text: Hi-res photo
+      url: /assets/images/christian-scharen-photo.jpg
+    - text: Full CV
+      url: https://lstc.academia.edu/ChristianScharen/CurriculumVitae
+    - text: Email Christian
+      email: true  # no url: uses author.email
 
+# Home page book grid; each image needs a .webp and .jpg
 selected_books:
   title: Selected Books
-  groups:
+  groups:  # one column each
     - title: Practical Theology
       items:
         - name: Ethnography as Christian Theology and Ethics
           url: "https://www.bloomsbury.com/us/ethnography-as-christian-theology-and-ethics-9780567710468/"
-          image: /img/ethnography-cover.webp
+          image: /assets/images/ethnography-cover.webp
         - name: Christian Practical Wisdom
           url: "https://www.eerdmans.com/9781467445061/christian-practical-wisdom/"
-          image: /img/christian-practical-wisdom-cover.webp
+          image: /assets/images/christian-practical-wisdom-cover.webp
         - name: Fieldwork in Theology
           url: "https://bakerpublishinggroup.com/products/9780801049309_fieldwork-in-theology"
-          image: /img/fieldwork-in-theology-cover.webp
+          image: /assets/images/fieldwork-in-theology-cover.webp
         - name: Faith as a Way of Life
           url: "https://www.eerdmans.com/9780802862310/faith-as-a-way-of-life/"
-          image: /img/faith-as-a-way-of-life-cover.webp
+          image: /assets/images/faith-as-a-way-of-life-cover.webp
     - title: Music and religion
       items:
         - name: Someone Has To Care
           url: "https://wipfandstock.com/9781532612183/someone-has-to-care/"
-          image: /img/someone-has-to-care-cover.webp
+          image: /assets/images/someone-has-to-care-cover.webp
         - name: Broken Hallelujahs
-          url: "https://brazospress.com/"
-          image: /img/broken-hallelujahs-cover.webp
+          url: "https://www.goodreads.com/book/show/11067432-broken-hallelujahs"
+          image: /assets/images/broken-hallelujahs-cover.webp
         - name: One Step Closer
           url: "https://brazospress.com/"
-          image: /img/one-step-closer-cover.webp
+          image: /assets/images/one-step-closer-cover.webp
 
-representation:
-  title: Representation
-  list:
-    - name: Direct Contact
-      info: christian.scharen@gmail.com

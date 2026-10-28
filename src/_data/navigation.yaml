@@ -5,6 +5,8 @@ primary:
     url: "#custer"
   - text: "After Laura"
     url: "#after-laura"
+  - text: "Research"
+    url: "#research"
   - text: "Writing"
     url: "#writing"
   - text: "Newsletter"

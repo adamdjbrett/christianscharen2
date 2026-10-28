@@ -1,0 +1,14 @@
+<section class="section-padding border-top-custom" id="{{ research.id }}">
+  <div class="container">
+    <h2 class="section-heading">{{ research.title }}</h2>
+    <div class="research-grid">
+      {% for item in research.items %}
+      <article>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+        <a class="btn-editorial secondary-link" href="{{ item.url }}">{{ research.button }}</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

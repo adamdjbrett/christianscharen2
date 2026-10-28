@@ -1,4 +1,5 @@
 ---
+templateEngineOverride: njk,md
 title: "Contact"
 date: 2026-05-01
 author: Christian Scharen
@@ -14,7 +15,7 @@ description: "Get in touch with Christian Scharen."
 
 For inquiries about speaking, books, or collaborations:
 
-**christian.scharen@gmail.com**
+**{{ site.author.email }}**
 
 ## Speaking Inquiries
 

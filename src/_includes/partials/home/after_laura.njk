@@ -14,11 +14,8 @@
                             {{after_laura.button.text}}</a>
                     </div>{% endif %}
                 </div>
-                <div class="col-lg-1"></div>
                 <div class="col-lg-5 mb-5 mb-lg-0 reveal">
-                    {% set book = after_laura %}
-                    {% set book_image_class = "img-cover" %}
-                    {% include "partials/book_cover.njk" %}
+                    {% set pic = after_laura %}{% set pic_class = "img-cover" %}{% include "partials/linked_picture.njk" %}
                 </div>
             </div>
         </div>

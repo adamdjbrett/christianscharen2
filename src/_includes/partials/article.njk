@@ -1,22 +1,23 @@
-<section class="section-padding border-top-custom">
+{% set is_event = venue %}
+<article class="section-padding border-top-custom {{ 'h-event' if is_event else 'h-entry' }}">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8">
-        {% if date %}<span class="font-sans text-uppercase text-accent tracking-wider text-sm d-block mb-3">{{ date | postDate }}</span>{% endif %}
-        <h1 class="section-heading"><a href="{{ page.url }}">{{ title }}</a></h1>
-        {% if author %}<p class="text-muted">By {{ author }}</p>{% endif %}
-        {% if venue and city %}<p class="text-muted mb-2"><span class="me-2">{% icon "map-pin" %}</span>{{ venue }} &bull; {{ city }}</p>{% endif %}
+        {% if date %}<time class="font-sans text-uppercase text-accent tracking-wider text-sm d-block mb-3 {{ 'dt-start' if is_event else 'dt-published' }}" datetime="{{ date | formatDate }}">{{ date | postDate }}</time>{% endif %}
+        <h1 class="section-heading p-name"><a class="u-url" href="{{ page.url }}">{{ title }}</a></h1>
+        {% if author %}<p class="text-muted">By <a class="p-author h-card" href="/">{{ author }}</a></p>{% elif not is_event %}<data class="p-author h-card" value="{{ site.author.name }}"></data>{% endif %}
+        {% if venue and city %}<p class="text-muted mb-2"><span class="me-2">{% icon "map-pin" %}</span><span class="p-location">{{ venue }} &bull; {{ city }}</span></p>{% endif %}
         {% if time %}<p class="text-muted mb-3"><span class="me-2">{% icon "clock" %}</span>{{ time }}</p>{% endif %}
-        {% if description %}<p class="lead">{{ description }}</p>{% endif %}
-        {% include "partials/content_image.njk" %}
+        {% if description %}<p class="lead p-summary">{{ description }}</p>{% endif %}
+        {% if image %}{% set pic = { image: image, thumbnail: thumbnail, title: title } %}{% set pic_class = "img-fluid rounded-3 my-4" %}{% set pic_sizes = "(min-width: 60rem) 40rem, 100vw" %}{% include "partials/linked_picture.njk" %}{% endif %}
         {% if show_tags and tags %}
         <div class="mt-3">
-          {% for tag in tags | publicTags %}<a href="/tags/{{ tag | slug }}/" class="badge bg-light text-dark me-1 text-decoration-none">{{ tag }}</a>{% endfor %}
+          {% for tag in tags | publicTags %}<a href="/tags/{{ tag | slugify }}/" class="badge bg-light text-dark me-1 text-decoration-none p-category">{{ tag }}</a>{% endfor %}
         </div>
         {% endif %}
         <hr class="my-4">
-        {{ content | safe }}
+        <div class="e-content">{{ content | safe }}</div>
       </div>
     </div>
   </div>
-</section>
+</article>

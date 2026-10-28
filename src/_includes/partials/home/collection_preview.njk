@@ -10,14 +10,15 @@
       <div class="col-12">
         <div class="border-top-custom">
           {% for item in preview_items %}
-          <a href="{{ item.url }}" class="{% if preview_kind == 'event' %}article-item{% else %}articles-item{% endif %}">
+          {% set d = item.data or item %}
+          <a href="{{ item.url or '/events/' + item.slug + '/' }}" class="{% if preview_kind == 'event' %}article-item{% else %}articles-item{% endif %}">
             <div class="row align-items-center">
               <div class="col-md-3">
-                <span class="article-meta">{{ item.date | postDate }}{% if preview_kind == 'event' %}<br>{{ item.data.time }}{% endif %}</span>
+                <span class="article-meta">{{ (item.date or d.date) | postDate }}{% if preview_kind == 'event' %}<br>{{ d.time }}{% endif %}</span>
               </div>
               <div class="col-md-9">
-                <h3 class="article-title">{{ item.data.title }}</h3>
-                {% if preview_kind == 'event' %}<p>{{ item.data.venue }} | {{ item.data.city }}</p>{% endif %}
+                <h3 class="article-title">{{ d.title }}</h3>
+                {% if preview_kind == 'event' %}<p>{{ d.venue }} | {{ d.city }}</p>{% endif %}
               </div>
             </div>
           </a>

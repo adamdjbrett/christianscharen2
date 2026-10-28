@@ -1,28 +1,84 @@
 import * as yaml from 'js-yaml';
-import MarkdownIt from 'markdown-it';
-import { readFileSync } from 'node:fs';
-import { minifyCss } from './scripts/minify-css.mjs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { basename, dirname } from 'node:path';
 
-const md = new MarkdownIt({
-  html: true,
-  linkify: true,
-  typographer: true
-});
-const collectionTags = new Set(["writings", "events", "pages", "event_lists", "posts", "all"]);
+// Width/height of a PNG, JPEG or WebP under src/, read from the file header so templates never hard-code sizes.
+export function imageSize(src) {
+  const b = readFileSync(`src${src}`);
+  if (b.toString("ascii", 1, 4) === "PNG") return { width: b.readUInt32BE(16), height: b.readUInt32BE(20) };
+  if (b.toString("ascii", 8, 12) === "WEBP") {
+    const chunk = b.toString("ascii", 12, 16);
+    if (chunk === "VP8X") return { width: b.readUIntLE(24, 3) + 1, height: b.readUIntLE(27, 3) + 1 };
+    if (chunk === "VP8L") { const bits = b.readUInt32LE(21); return { width: (bits & 0x3fff) + 1, height: ((bits >> 14) & 0x3fff) + 1 }; }
+    return { width: b.readUInt16LE(26) & 0x3fff, height: b.readUInt16LE(28) & 0x3fff };
+  }
+  for (let i = 2; i < b.length;) { // JPEG: walk segments to the first start-of-frame marker
+    const marker = b[i + 1];
+    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) return { width: b.readUInt16BE(i + 7), height: b.readUInt16BE(i + 5) };
+    i += 2 + b.readUInt16BE(i + 2);
+  }
+  throw new Error(`Unknown image format: ${src}`);
+}
+
+const escapeAttr = value => String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+
+// "-800", "-1200"… width variants of an image plus the image itself, as a srcset; null when there is only one size.
+export function srcset(src, ext = "webp") {
+  const base = src.replace(/\.(webp|jpe?g|png)$/, ""), dir = dirname(base), name = basename(base);
+  if (!existsSync(`src${base}.${ext}`)) throw new Error(`${base}.${ext} is missing: every image needs a WebP and a same-size JPEG`);
+  const variants = readdirSync(`src${dir}`)
+    .map(file => file.startsWith(`${name}-`) && file.endsWith(`.${ext}`) && file.slice(name.length + 1, -ext.length - 1))
+    .filter(width => /^\d+$/.test(width)).sort((a, b) => a - b).map(width => `${base}-${width}.${ext} ${width}w`);
+  return variants.length ? [...variants, `${base}.${ext} ${imageSize(`${base}.${ext}`).width}w`].join(", ") : null;
+}
+
+// Display width of the home page's feature images (hero, About, Custer, After Laura): about 5/12 of the
+// content column, which tops out near 30rem; below 60rem they run full width. Also used by the hero preload.
+export const featureSizes = "(min-width: 60rem) min(36vw, 30rem), 100vw";
+
+// One <picture> for every site image: WebP source, same-size JPEG fallback, real width/height, srcset when variants exist.
+export function picture(src, alt, { class: className, sizes = featureSizes, loading = "lazy", fetchpriority } = {}) {
+  const base = src.replace(/\.(webp|jpe?g|png)$/, "");
+  const set = ext => { const list = srcset(base, ext); return list ? ` srcset="${list}"${sizes ? ` sizes="${sizes}"` : ""}` : ""; };
+  const { width, height } = imageSize(`${base}.webp`);
+  return `<picture><source type="image/webp"${set("webp") || ` srcset="${base}.webp"`}>`
+    + `<img src="${base}.jpg"${set("jpg")} alt="${escapeAttr(alt)}" width="${width}" height="${height}"`
+    + `${className ? ` class="${className}"` : ""} loading="${loading}" decoding="async"${fetchpriority ? ` fetchpriority="${fetchpriority}"` : ""}></picture>`;
+}
+
+export const minifyCss = css => css
+  .replace(/\/\*[\s\S]*?\*\//g, "")
+  .replace(/\s+/g, " ")
+  .replace(/\s*([{}:;,>])\s*/g, "$1")
+  .replace(/;}/g, "}")
+  .trim();
+
+// collection names, not reader-facing tags ("events" also hides that tag on the speaking posts)
+const collectionTags = new Set(["writings", "events", "pages", "all"]);
 const iconPaths = {
-  "arrow-down": "M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z",
   "arrow-left": "M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z",
   "arrow-right": "M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z",
-  "arrow-square-out": "M224,104a8,8,0,0,1-16,0V59.32l-66.33,66.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z",
   "map-pin": "M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z",
   clock: "M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"
 };
 
 export default function(eleventyConfig) {
-  eleventyConfig.addGlobalData("criticalCss", minifyCss(readFileSync("tokens.css", "utf8") + readFileSync("src/css/critical.css", "utf8")));
-  eleventyConfig.addGlobalData("criticalJs", readFileSync("src/js/theme-critical.js", "utf8"));
+  eleventyConfig.setQuietMode(true);
+  // events.yaml `enabled: false` unpublishes the /events/ pages (home, nav and sitemap check the flag too)
+  if (!yaml.load(readFileSync("src/_data/events.yaml", "utf8")).enabled) eleventyConfig.ignores.add("src/events/");
+  // ponytail: reuse Eleventy's own markdown-it instead of installing a second copy
+  let md;
+  eleventyConfig.amendLibrary("md", lib => { md = lib.set({ linkify: true, typographer: true }); });
+  // every offsite link opens in a new tab (_blank implies noopener); the ↗ marker comes from style.css
+  eleventyConfig.addTransform("offsite-links", function(html) {
+    if (!this.page.outputPath?.endsWith(".html")) return html;
+    return html.replace(/<a (?![^>]*\btarget=)(?=[^>]*\bhref="https?:\/\/)/g, '<a target="_blank" ');
+  });
+  eleventyConfig.addGlobalData("generatorVersion", JSON.parse(readFileSync("node_modules/@awesome.me/buildawesome/package.json", "utf8")).version);
+  eleventyConfig.addGlobalData("criticalJs", readFileSync("src/assets/js/theme-critical.js", "utf8"));
   eleventyConfig.setServerOptions({ liveReload: false });
   eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
+  eleventyConfig.addShortcode("year", () => String(new Date().getFullYear()));
   eleventyConfig.addShortcode("icon", function(name) {
     const path = iconPaths[name];
     if (!path) throw new Error(`Unknown icon: ${name}`);
@@ -30,23 +86,20 @@ export default function(eleventyConfig) {
   });
   eleventyConfig.addFilter("formatDate", function(date) {
     if (!date) return "";
-    const d = new Date(date);
+    const d = date === "now" ? new Date() : new Date(date);
     return d.toISOString().split('T')[0];
   });
-  eleventyConfig.addDataExtension("yaml", (contents) => {
-    return yaml.load(contents);
-  });
-  eleventyConfig.addDataExtension("yml", (contents) => {
-    return yaml.load(contents);
-  });
+  eleventyConfig.addDataExtension("yaml", contents => yaml.load(contents));
   eleventyConfig.addFilter("md", function(content) {
     if (!content) return "";
     return md.render(content);
   });
-  eleventyConfig.addFilter("limit", function(array, limit) {
-    if (!Array.isArray(array)) return [];
-    return array.slice(0, limit);
-  });
+  // feeds: readers resolve root-relative links against their own origin
+  eleventyConfig.addFilter("absoluteUrls", (html, base) => html.replace(/(href|src)="\//g, `$1="${base}/`));
+  eleventyConfig.addShortcode("picture", picture);
+  eleventyConfig.addFilter("srcset", srcset);
+  eleventyConfig.addGlobalData("featureSizes", featureSizes);
+  eleventyConfig.addFilter("jpg", src => src.replace(/\.webp$/, ".jpg"));
   eleventyConfig.addFilter("publicTags", function(tags) {
     return Array.isArray(tags) ? tags.filter(tag => !collectionTags.has(tag)) : [];
   });
@@ -56,62 +109,28 @@ export default function(eleventyConfig) {
     return d.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
+      timeZone: 'UTC'
     });
-  });
-  eleventyConfig.addFilter("slug", function(string) {
-  if (!string) return "";
-  return string.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   });
   eleventyConfig.addCollection("writings", function(collection) {
     return collection.getFilteredByGlob("src/writings/*.md").reverse();
   });
-  eleventyConfig.addCollection("events", function(collection) {
-    return collection.getFilteredByGlob("src/events/*.md").reverse();
+  eleventyConfig.addCollection("tagList", collection =>
+    [...new Set(collection.getAll().flatMap(item => item.data.tags ?? []))].filter(tag => !collectionTags.has(tag)).sort());
+  eleventyConfig.addFilter("filterByTags", (items, tags) => items.filter(item => tags.some(tag => item.data.tags?.includes(tag))));
+  eleventyConfig.addWatchTarget("src/assets/css/");
+  eleventyConfig.on("eleventy.after", ({ dir }) => {
+    mkdirSync(`${dir.output}/assets/css`, { recursive: true });
+    writeFileSync(`${dir.output}/assets/css/style.css`, minifyCss(readFileSync("src/assets/css/style.css", "utf8")));
   });
-
-eleventyConfig.addCollection("tagList", function(collection) {
-  let tagSet = new Set();
-  
-  collection.getAll().forEach(item => {
-    if (item.data.tags && Array.isArray(item.data.tags)) {
-      item.data.tags.forEach(tag => {
-        if (!collectionTags.has(tag)) {
-          tagSet.add(tag);
-        }
-      });
-    }
-  });
-  
-  return Array.from(tagSet).sort();
-});
-  
-  eleventyConfig.addFilter("filterByTags", function(array, tags) {
-  if (!Array.isArray(array)) return [];
-  if (!tags || !Array.isArray(tags)) return array;
-  return array.filter(item => {
-    if (!item.data.tags) return false;
-    return tags.some(tag => item.data.tags.includes(tag));
-    });
-  });
-  eleventyConfig.addPassthroughCopy({ "src/css/style.css": "css/style.css" });
-  eleventyConfig.addPassthroughCopy("src/fonts");
-  eleventyConfig.addPassthroughCopy("src/img");
-  eleventyConfig.addPassthroughCopy("src/icons");
-  eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });
-  eleventyConfig.addPassthroughCopy({ "src/apple-touch-icon.png": "apple-touch-icon.png" });
-  eleventyConfig.addPassthroughCopy({ "src/icon-192.png": "icon-192.png" });
-  eleventyConfig.addPassthroughCopy({ "src/icon-512.png": "icon-512.png" });
-  eleventyConfig.addPassthroughCopy({ "src/_headers": "_headers" });
+  eleventyConfig.addPassthroughCopy("src/assets/{images,fonts,icons}");
+  eleventyConfig.addPassthroughCopy({ "src/assets/favicons": "/" });
+  eleventyConfig.addPassthroughCopy({ "src/xmit.toml": "xmit.toml" });
   return {
-    dir: {
-      input: "src",
-      output: "_site",
-      includes: "_includes",
-      layouts: "_includes",
-      data: "_data"
-    },
-    templateFormats: ["njk", "md", "html"],
-    passthroughFileCopy: true
+    dir: { input: "src", output: "_site" },
+    templateFormats: ["njk", "md"],
+    // no markdown file uses template tags, so skip the Liquid pass
+    markdownTemplateEngine: false
   };
 }

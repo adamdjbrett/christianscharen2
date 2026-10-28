@@ -1,4 +1,5 @@
 ---
+templateEngineOverride: njk,md
 title: "Speaking Events - July 2026"
 date: 2026-07-01
 author: Christian Scharen
@@ -10,7 +11,7 @@ description: "Upcoming speaking events for July 2026."
 
 # Speaking Events - July 2026
 
-If you'd like to inquire about having me for your event, please email: **christian.scharen@gmail.com**
+If you'd like to inquire about having me for your event, please email: **{{ site.author.email }}**
 
 > 50% of my speaking fees support Indigenous organizations and causes.
 

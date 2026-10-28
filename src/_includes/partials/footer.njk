@@ -1,16 +1,20 @@
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-meta">
-      <p><a href="/">{{ site.title }}</a> · {{ site.copyright }} · <a href="mailto:{{ site.author.email }}">Email</a></p>
+    <div class="footer-meta h-card">
+      <data class="u-photo" value="{{ site.url }}{{ site.author.image }}"></data>
+      <data class="p-note" value="{{ site.author.bio }}"></data>
+      <data class="p-locality" value="{{ site.author.location }}"></data>
       <ul class="social-links" aria-label="{{ site.author.name }} elsewhere">
         {% for social in site.author.social_links %}
         <li>
-          <a href="{{ social.url }}" aria-label="{{ social.name }}">
-            <img src="/icons/{{ social.icon }}.svg" width="20" height="20" alt="">
+          <a class="u-url" href="{{ social.url }}" rel="me" aria-label="{{ social.name }}">
+            <img src="/assets/icons/{{ social.icon }}.svg" width="20" height="20" alt="">
           </a>
         </li>
         {% endfor %}
       </ul>
+      <p><a class="p-name u-url u-uid" href="/">{{ site.author.name }}</a> · © {% year %} {{ site.author.name }} · <a class="u-email" href="mailto:{{ site.author.email }}">Email</a></p>
+      <div class="land-acknowledgement">{{ site.land_acknowledgement | md | safe }}</div>
     </div>
   </div>
 </footer>

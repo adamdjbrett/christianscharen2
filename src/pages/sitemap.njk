@@ -3,7 +3,6 @@ layout: false
 permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
@@ -18,9 +17,9 @@ eleventyExcludeFromCollections: true
         <priority>0.8</priority>
     </url>
     {% endfor %}
-    {% for event in collections.events %}
+    {% for event in events.items if events.enabled %}
     <url>
-        <loc>{{ site.url }}{{ event.url }}</loc>
+        <loc>{{ site.url }}/events/{{ event.slug }}/</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>

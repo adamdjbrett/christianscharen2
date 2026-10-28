@@ -1,35 +1,37 @@
 ---
 layout: layout.njk
-title: Other Writing
-description: Archives & Essays by Christian Scharen
+title: Events
+description: Calendar of events with Christian Scharen
 hero: 
-  title: Other Writing
-  info: Archives & Essays
+  title: Events
+  info: Calendar
 pagination:
-  data: collections.writings
+  data: events.items
   size: 5
-  reverse: true
-permalink: "/writings/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+permalink: "/events/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+eleventyExcludeFromCollections: true
 ---
-<section class="section-padding border-top-custom">
+
+<section class="section-padding border-top-custom h-feed">
     <div class="container">
         <div class="row mb-5 reveal">
             <div class="col-lg-8">
                 <span class="font-sans text-uppercase text-accent tracking-wider text-sm d-block mb-3">{{hero.info}}</span>
-                <h1 class="section-heading">{{hero.title}}</h1>
+                <h1 class="section-heading p-name">{{hero.title}}</h1>
             </div>
         </div>
         <div class="row reveal" style="transition-delay: 0.2s;">
             <div class="col-12">
                 <div class="border-top-custom">
-                    {% for post in pagination.items %}
-                    <a href="{{ post.url }}" class="article-item">
+                    {% for event in pagination.items %}
+                    <a href="/events/{{ event.slug }}/" class="article-item h-event">
                         <div class="row align-items-center">
                             <div class="col-md-3">
-                                <span class="article-meta">{{ post.data.category or post.data.tags[0] or "Uncategorized" }}</span>
+                                <span class="article-meta">{{ event.date | postDate }}</span>
                             </div>
                             <div class="col-md-9">
-                                <h3 class="article-title">{{ post.data.title }}</h3>
+                                <h3 class="article-title p-name">{{ event.title }}</h3>
+                                <span class="article-meta">{{ event.venue }} &bull; {{ event.city }}</span>
                             </div>
                         </div>
                     </a>

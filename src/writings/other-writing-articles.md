@@ -2,7 +2,7 @@
 title: "Other Writing: Articles & Chapters"
 date: 2026-05-20
 author: Christian Scharen
-image: /img/christianscharen-author.webp
+image: /assets/images/christianscharen-author.webp
 tags:
   - writing
   - articles
@@ -25,4 +25,4 @@ description: "Selected articles and book chapters by Christian Scharen."
 
 ---
 
-*For a complete list of publications, visit [Google Scholar](link) or [Academia.edu](link).*
+*For a complete list of publications, visit [Google Scholar](https://scholar.google.com/citations?user=u2SH3YgAAAAJ) or [Academia.edu](https://lstc.academia.edu/ChristianScharen).*

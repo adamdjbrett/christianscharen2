@@ -1,22 +1,19 @@
 <section class="section-padding border-top-custom grey">
-<div class="container">
-    <div class="row mb-5">
-        <div class="col-md-12 p-3">
-            <h2 class="section-heading">{{site.selected_books.title}}</h2>
-        </div>
-        {% for group in site.selected_books.groups %}
-        <div class="col-md-5 {% if loop.index0 %}offset-md-2 {% endif %}p-3">
-            <h3 class="mb-4 fw-bold">{{ group.title }}</h3>
-            <div class="selected-books-grid">
-             {% for item in group.items %}
-              <a href="{{ item.url }}" class="selected-book">
-                <img src="{{ item.image }}" alt="{{ item.name }} book cover" width="500" height="750" loading="lazy" decoding="async">
-                <span>{{ item.name }}</span>
-              </a>
-              {% endfor %}
-            </div>
-        </div>
+  <div class="container">
+    <h2 class="section-heading">{{ site.selected_books.title }}</h2>
+    <div class="selected-books">
+      {% for group in site.selected_books.groups %}
+      {# heading row + one row per pair of covers #}
+      <div class="selected-books-group" style="--rows: {{ (group.items.length / 2) | round(0, 'ceil') + 1 }}">
+        <h3>{{ group.title }}</h3>
+        {% for item in group.items %}
+        <a href="{{ item.url }}" class="selected-book">
+          {% picture item.image, item.name + " book cover" %}
+          <span>{{ item.name }}</span>
+        </a>
         {% endfor %}
+      </div>
+      {% endfor %}
     </div>
-</div>
+  </div>
 </section>

@@ -1,0 +1,4 @@
+{# pic: { image (full size), thumbnail (optional, shown instead), title, url (optional link) }; pic_class, pic_sizes optional #}
+<a class="image-link" href="{{ pic.url or pic.image }}" aria-label="{% if pic.url %}View {{ pic.title }} at the publisher{% else %}View full-size {{ pic.title }} image{% endif %}">
+  {% picture pic.thumbnail or pic.image, pic.title, { class: pic_class, sizes: pic_sizes } %}
+</a>

@@ -1,8 +1,0 @@
-{
-  "date": "2026-08-24",
-  "framework": "Eleventy via BuildAwesome",
-  "font_stack": "self-hosted IBM Plex Serif + IBM Plex Sans",
-  "palette": "OKLCH grayscale tokens",
-  "motion": "motion-cut",
-  "spacing": "4pt custom-property scale"
-}

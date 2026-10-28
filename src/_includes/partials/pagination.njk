@@ -1,9 +1,7 @@
-{% set items = collections[pagination_collection] %}
-{% if items %}
-{% for item in items %}
-{% if item.url == page.url %}
-{% set previous = items[loop.index0 - 1] if loop.index0 > 0 %}
-{% set next = items[loop.index0 + 1] if loop.index0 + 1 < items.length %}
+{% if pagination_collection %}
+{% set previous = collections[pagination_collection] | getPreviousCollectionItem %}
+{% set next = collections[pagination_collection] | getNextCollectionItem %}
+{% endif %}
 {% if previous or next %}
 <section class="section-padding border-top-custom mt-5" aria-label="{{ pagination_label }} pagination">
   <div class="container">
@@ -27,7 +25,4 @@
     </div>
   </div>
 </section>
-{% endif %}
-{% endif %}
-{% endfor %}
 {% endif %}

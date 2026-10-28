@@ -1,0 +1,22 @@
+---
+layout: layout.njk
+pagination:
+  data: events.items
+  size: 1
+  alias: event
+permalink: "/events/{{ event.slug }}/"
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  title: "{{ event.title }}"
+  description: "{{ event.description }}"
+  image: "{{ event.image }}"
+  venue: "{{ event.venue }}"
+---
+{% set date = event.date %}{% set time = event.time %}{% set city = event.city %}
+{% set content = event.body | md %}
+{% set pagination_label = "Event" %}
+{% set prev_event = pagination.page.previous %}{% set next_event = pagination.page.next %}
+{% set previous = { url: "/events/" + prev_event.slug + "/", data: prev_event } if prev_event %}
+{% set next = { url: "/events/" + next_event.slug + "/", data: next_event } if next_event %}
+{% include "partials/article.njk" %}
+{% include "partials/pagination.njk" %}

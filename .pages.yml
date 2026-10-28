@@ -1,0 +1,230 @@
+# Pages CMS: https://pagescms.org/docs/configuration/
+# Edit at https://app.pagescms.org; saving commits to GitHub, which rebuilds the site.
+# Field paths must track src/writings, src/index.md and src/_data/*.
+
+media:
+  - name: images
+    label: Images
+    input: src/assets/images
+    output: /assets/images
+    categories: [image]
+    rename: safe # "My Photo.JPG" → my-photo.jpg
+
+content:
+  # --- Writing ----------------------------------------------------------------
+  - name: writings
+    label: Writing
+    type: collection
+    path: src/writings
+    filename: '{primary}.md'
+    exclude: [index.njk, writings.11tydata.js]
+    view:
+      fields: [title, date, tags]
+      primary: title
+      sort: [date, title]
+      default: { sort: date, order: desc }
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: date, label: Date, type: date, options: { format: yyyy-MM-dd }, required: true }
+      - { name: author, label: Author, type: string, default: Christian Scharen }
+      - { name: description, label: Summary, type: text, description: Shown under the title and in search results }
+      - { name: tags, label: Tags, type: string, list: true }
+      - { name: image, label: Image, type: image, description: Upload a .webp and a .jpg of the same image }
+      - { name: thumbnail, label: Smaller image shown on the page, type: image, description: Optional; the main image opens on click }
+      - { name: templateEngineOverride, type: string, hidden: true }
+      - { name: body, label: Body, type: rich-text }
+
+  # --- Home page --------------------------------------------------------------
+  - name: home
+    label: Home page
+    type: file
+    path: src/index.md
+    fields:
+      - { name: layout, type: string, hidden: true, default: home.njk }
+      - { name: title, label: Page title, type: string, description: Browser tab and share title }
+      - { name: description, label: Meta description, type: text }
+      - { name: image, label: Hero photo, type: image, description: Also the share image }
+      - name: hero
+        label: Hero
+        type: object
+        fields:
+          - { name: id, type: string, hidden: true }
+          - { name: title, label: Big heading, type: string }
+      - name: about
+        label: About
+        type: object
+        fields:
+          - { name: id, type: string, hidden: true }
+          - { name: title, label: Heading, type: string }
+          - { name: image, label: Photo, type: image, description: Shown as a 4:5 crop }
+          - { name: text, label: Bio, type: text, description: Markdown }
+      - name: custer
+        label: Custer (latest book)
+        type: object
+        fields:
+          - { name: id, type: string, hidden: true }
+          - { name: info, label: Label, type: string, description: Small text above the title }
+          - { name: title, label: Title, type: string }
+          - { name: description, label: Subtitle, type: string }
+          - { name: text, label: Text, type: text, description: Markdown }
+          - { name: image, label: Cover (full size), type: image, description: Opens on click }
+          - { name: thumbnail, label: Cover (shown), type: image }
+          - { name: button, label: Button, type: object, fields: [ { name: text, type: string }, { name: url, type: string, description: '"#" hides the button' } ] }
+          - { name: button1, label: Second button, type: object, fields: [ { name: text, type: string }, { name: url, type: string, description: '"#" hides the button' } ] }
+          - { name: blockquote, label: Pull quote, type: object, fields: [ { name: text, type: text } ] }
+      - name: after_laura
+        label: After Laura (memoir)
+        type: object
+        fields:
+          - { name: id, type: string, hidden: true }
+          - { name: info, label: Label, type: string }
+          - { name: title, label: Title, type: string }
+          - { name: image, label: Image, type: image }
+          - { name: text, label: Paragraphs, type: object, list: true, fields: [ { name: article, label: Paragraph, type: text, description: Markdown } ] }
+          - { name: button, label: Button, type: object, fields: [ { name: text, type: string }, { name: url, type: string, description: '"#" hides the button' } ] }
+      - name: research
+        label: Research
+        type: object
+        fields:
+          - { name: id, type: string, hidden: true }
+          - { name: title, label: Heading, type: string }
+          - { name: button, label: Button label, type: string, description: Used on every project }
+          - name: items
+            label: Projects
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: description, label: Description, type: text }
+              - { name: url, label: Link, type: string }
+      - name: newsletter
+        label: Newsletter
+        type: object
+        fields:
+          - { name: id, type: string, hidden: true }
+          - { name: info, label: Label, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: text, label: Text, type: text }
+          - { name: button, label: Button, type: object, fields: [ { name: text, type: string }, { name: url, type: string } ] }
+          - { name: note, label: Italic note, type: text }
+      - name: speaking
+        label: Speaking
+        type: object
+        fields:
+          - { name: id, type: string, hidden: true }
+          - { name: info, label: Label, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: text, label: Text, type: text }
+          - { name: button, label: Button, type: object, fields: [ { name: text, type: string, description: Links to the site email } ] }
+          - { name: note, label: Italic note, type: text }
+      - name: writing
+        label: Writing list
+        type: object
+        fields:
+          - { name: id, type: string, hidden: true }
+          - { name: info, label: Label, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: button, label: Button, type: object, fields: [ { name: text, type: string }, { name: url, type: string } ] }
+
+  # --- Site settings ----------------------------------------------------------
+  - name: site
+    label: Site settings
+    type: file
+    path: src/_data/site.yaml
+    fields:
+      - { name: title, label: Site name, type: string }
+      - { name: description, label: Default description, type: text }
+      - { name: url, label: Live address, type: string, description: No trailing slash }
+      - { name: language, label: Language, type: string }
+      - { name: land_acknowledgement, label: Land acknowledgement, type: text, description: Footer; markdown }
+      - name: author
+        label: Christian
+        type: object
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: email, label: Email, type: string, description: Every email link uses this }
+          - { name: bio, label: Short bio, type: text }
+          - { name: tagline, label: Tagline, type: string, description: Under the nav }
+          - { name: image, label: Share image, type: image }
+          - { name: location, label: Location, type: string }
+          - name: social_links
+            label: Footer icons
+            type: object
+            list: true
+            fields:
+              - { name: name, label: Name, type: string }
+              - { name: icon, label: Icon, type: select, options: { values: [academia, church, google-scholar, graduation-cap, instagram, linkedin, orcid] } }
+              - { name: url, label: Link, type: string }
+      - { name: featured_tags, label: Home Writing list tags, type: string, list: true }
+      - name: contact
+        label: About buttons
+        type: object
+        fields:
+          - name: links
+            label: Buttons
+            type: object
+            list: true
+            fields:
+              - { name: text, label: Label, type: string }
+              - { name: url, label: Link, type: string }
+              - { name: email, label: Use site email instead of a link, type: boolean }
+      - name: selected_books
+        label: Selected Books
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - name: groups
+            label: Columns
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Column heading, type: string }
+              - name: items
+                label: Books
+                type: object
+                list: true
+                fields:
+                  - { name: name, label: Title, type: string }
+                  - { name: url, label: Link, type: string }
+                  - { name: image, label: Cover, type: image, description: Upload a .webp and a .jpg }
+
+  # --- Navigation -------------------------------------------------------------
+  - name: navigation
+    label: Navigation
+    type: file
+    path: src/_data/navigation.yaml
+    fields:
+      - name: primary
+        label: Menu
+        type: object
+        list: true
+        fields:
+          - { name: text, label: Label, type: string }
+          - { name: url, label: Link, type: string, description: '"#id" jumps to a home page section' }
+
+  # --- Events -----------------------------------------------------------------
+  - name: events
+    label: Events
+    type: file
+    path: src/_data/events.yaml
+    fields:
+      - { name: enabled, label: Publish events, type: boolean, description: Off hides every event page, link and list }
+      - { name: id, type: string, hidden: true }
+      - { name: info, label: Home label, type: string }
+      - { name: title, label: Home heading, type: string }
+      - { name: button, label: Home button, type: object, fields: [ { name: text, type: string }, { name: url, type: string } ] }
+      - name: items
+        label: Events
+        type: object
+        list: true
+        fields:
+          - { name: slug, label: URL name, type: string, description: Page address is /events/<this>/ }
+          - { name: title, label: Title, type: string }
+          - { name: description, label: Summary, type: text }
+          - { name: date, label: Date, type: date, options: { format: yyyy-MM-dd } }
+          - { name: time, label: Time, type: string }
+          - { name: venue, label: Venue, type: string }
+          - { name: city, label: City, type: string }
+          - { name: image, label: Image, type: image }
+          - { name: thumbnail, label: Smaller image, type: image }
+          - { name: body, label: Details, type: text, description: Markdown }

@@ -1,0 +1,121 @@
+# Events: one list drives the /events/ listing, the /events/<slug>/ pages,
+# the home-page section, the nav link and the sitemap.
+# Set enabled: true to publish them again.
+enabled: false
+
+# home-page section
+id: events
+info: Upcoming Events
+title: Events
+button:
+  text: View All Events
+  url: /events/
+
+items:
+- slug: event-1
+  title: Custer Died for Our Sins Book Launch
+  description: 'Join Christian Scharen for the launch of his new book ''Custer Died for Our Sins: A Practical Theology of Settler Repair'''
+  date: '2026-06-15'
+  time: 7:00 PM - 9:00 PM
+  image: /assets/images/bookcover.webp
+  thumbnail: /assets/images/bookcover_tn.webp
+  venue: First Lutheran Church
+  city: Minneapolis, MN
+  body: |
+    Join us for the official book launch of *Custer Died for Our Sins*. Christian will be in conversation with local theologians and community leaders about settler repair and the theology of truth-telling.
+
+    **Event Highlights:**
+    - Book signing
+    - Q&A session
+    - Reception to follow
+- slug: event-2
+  title: Theology of Settler Repair Workshop
+  description: A day-long workshop exploring practical theology for settler repair and Indigenous justice
+  date: '2026-06-22'
+  time: 9:00 AM - 4:00 PM
+  venue: Seminary of the Southwest
+  city: Austin, TX
+  body: |
+    This workshop will explore the intertwined stories of the Ingalls and Deloria families, offering theological grounding for speaking complicated truths and moving toward practical actions that repair relationships.
+
+    **What to Expect:**
+    - Interactive sessions
+    - Group discussion
+    - Resource sharing
+- slug: event-3
+  title: 'After Laura: Book Preview Reading'
+  description: A special preview reading from Christian Scharen's forthcoming memoir 'After Laura'
+  date: '2026-06-29'
+  time: 6:30 PM - 8:30 PM
+  venue: Augsburg University
+  city: Minneapolis, MN
+  body: |
+    Join us for an evening of reading and conversation as Christian shares excerpts from his forthcoming memoir *After Laura*, a deeply personal exploration of family, pioneer mythology, and the path toward healing.
+
+    **Event Includes:**
+    - Author reading
+    - Conversation
+    - Light refreshments
+- slug: event-4
+  title: 'ELCA Youth Gathering: Settler Repair Workshop'
+  description: Christian Scharen leads a workshop on settler repair for youth leaders at the ELCA Youth Gathering
+  date: '2026-07-06'
+  time: 10:00 AM - 12:00 PM
+  venue: ELCA Youth Gathering
+  city: New Orleans, LA
+  body: |
+    Workshop for youth leaders exploring how to engage young people in conversations about settler colonialism, Indigenous justice, and Christian faith.
+- slug: event-5
+  title: Faith & Justice in the Pioneer Settler Past
+  description: An evening lecture exploring the intersections of faith, justice, and the American pioneer settler past
+  date: '2026-07-13'
+  time: 7:00 PM - 9:00 PM
+  venue: House of Hope Church
+  city: St. Paul, MN
+  body: |
+    Christian Scharen explores how North American Christians can work toward repair, drawing from his research on the Ingalls and Deloria families.
+- slug: event-6
+  title: 'NDN Collective Conference: Landback and Theology'
+  description: Christian speaks at the NDN Collective Conference on the intersection of Landback organizing and Christian theology
+  date: '2026-07-20'
+  time: 9:00 AM - 11:00 AM
+  venue: NDN Collective Conference
+  city: Rapid City, SD
+  body: |
+    A conversation on the theological dimensions of Landback organizing and the role of settler Christians in supporting Indigenous sovereignty and justice.
+- slug: event-7
+  title: Woyatan Lutheran Church Evening Lecture
+  description: Christian Scharen speaks on the theology of repair at Woyatan Lutheran Church
+  date: '2026-07-27'
+  time: 6:00 PM - 8:00 PM
+  venue: Woyatan Lutheran Church
+  city: Rapid City, SD
+  body: |
+    An evening lecture exploring the practical theology of settler repair and the work of Indigenous justice.
+- slug: event-8
+  title: 'Practical Theology Symposium: Ethnography as Christian Theology'
+  description: Christian Scharen presents on theological ethnography at the Practical Theology Symposium
+  date: '2026-08-10'
+  time: 2:00 PM - 3:30 PM
+  venue: Princeton Theological Seminary
+  city: Princeton, NJ
+  body: |
+    Presenting on the latest edition of *Ethnography as Christian Theology and Ethics* and the ongoing importance of ethnographic methods in practical theology.
+- slug: event-9
+  title: After Laura Book Reading & Signing
+  description: A public reading and book signing for the forthcoming memoir 'After Laura'
+  date: '2026-08-15'
+  time: 7:00 PM - 9:00 PM
+  venue: Magers & Quinn Booksellers
+  city: Minneapolis, MN
+  body: |
+    Join Christian for a public reading and book signing of his forthcoming memoir *After Laura* at one of Minneapolis's favorite independent bookstores.
+- slug: event-10
+  title: 'Worship Before and After Empire: A Lecture'
+  description: Christian Scharen explores how Christian worship has been shaped by the relationship between church and empire
+  date: '2026-08-25'
+  time: 4:00 PM - 6:00 PM
+  venue: Duke Divinity School
+  city: Durham, NC
+  body: |
+    A lecture exploring Christian worship before and after Christianity became the religion of Empire. Part of a new book project on the relationship between worship and empire.

@@ -1,0 +1,46 @@
+# xmit.co response headers (https://xmit.co); copied to the site root by the build.
+# `on` is a path regex; the patterns don't overlap, so no path gets two values.
+
+# HTML: always revalidate.
+[[headers]]
+name = "Cache-Control"
+value = "public, max-age=0, must-revalidate"
+on = "(?:/|\\.html)$"
+
+# CSS: changed in place, so one day.
+[[headers]]
+name = "Cache-Control"
+value = "public, max-age=86400"
+on = "\\.css$"
+
+# Images, icons, fonts: names aren't versioned and covers do get replaced, so 30 days.
+[[headers]]
+name = "Cache-Control"
+value = "public, max-age=2592000, stale-while-revalidate=86400"
+on = "\\.(?:webp|png|jpe?g|svg|ico|woff2)$"
+
+# Feeds, sitemap, manifest, text files.
+[[headers]]
+name = "Cache-Control"
+value = "public, max-age=3600"
+on = "\\.(?:xml|rss|json|txt|webmanifest)$"
+
+[[headers]]
+name = "Content-Type"
+value = "application/rss+xml; charset=utf-8"
+on = "\\.rss$"
+
+[[headers]]
+name = "Content-Type"
+value = "application/atom+xml; charset=utf-8"
+on = "/feed/feed\\.xml$"
+
+[[headers]]
+name = "Content-Type"
+value = "application/feed+json; charset=utf-8"
+on = "/feed/feed\\.json$"
+
+[[headers]]
+name = "Content-Type"
+value = "application/manifest+json"
+on = "\\.webmanifest$"

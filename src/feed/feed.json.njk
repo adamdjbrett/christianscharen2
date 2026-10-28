@@ -1,0 +1,30 @@
+---
+layout: false
+permalink: /feed/feed.json
+eleventyExcludeFromCollections: true
+---
+{%- set posts = collections.writings | sort(true, false, "date") -%}
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": {{ site.title | dump | safe }},
+  "description": {{ site.description | dump | safe }},
+  "home_page_url": "{{ site.url }}/",
+  "feed_url": "{{ site.url }}/feed/feed.json",
+  "language": "{{ site.language }}",
+  "authors": [{ "name": {{ site.author.name | dump | safe }}, "url": "{{ site.url }}/" }],
+  "items": [
+    {%- for post in posts %}
+    {
+      "id": "{{ site.url }}{{ post.url }}",
+      "url": "{{ site.url }}{{ post.url }}",
+      "title": {{ post.data.title | dump | safe }},
+      {%- if post.data.description %}
+      "summary": {{ post.data.description | dump | safe }},
+      {%- endif %}
+      "date_published": "{{ post.date.toISOString() }}",
+      "tags": {{ post.data.tags | publicTags | dump | safe }},
+      "content_html": {{ post.content | absoluteUrls(site.url) | dump | safe }}
+    }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}

@@ -1,0 +1,28 @@
+---
+layout: false
+permalink: /feed/feed.rss
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+{% set posts = collections.writings | sort(true, false, "date") %}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>{{ site.title }}</title>
+    <link>{{ site.url }}/</link>
+    <description>{{ site.description }}</description>
+    <language>{{ site.language }}</language>
+    <atom:link href="{{ site.url }}/feed/feed.rss" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>{{ posts[0].date.toUTCString() }}</lastBuildDate>
+    {% for post in posts %}
+    <item>
+      <title>{{ post.data.title }}</title>
+      <link>{{ site.url }}{{ post.url }}</link>
+      <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+      <pubDate>{{ post.date.toUTCString() }}</pubDate>
+      <dc:creator>{{ post.data.author or site.author.name }}</dc:creator>
+      {% for tag in post.data.tags | publicTags %}<category>{{ tag }}</category>{% endfor %}
+      <description>{{ post.content | absoluteUrls(site.url) }}</description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

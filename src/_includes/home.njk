@@ -5,14 +5,17 @@ layout: default.njk
 {% include "partials/home/about_contact.njk"%}
 {% include "partials/home/custer.njk"%}
 {% include "partials/home/after_laura.njk"%}
+{% include "partials/home/research.njk"%}
 {% include "partials/home/newsletter_speaking.njk"%}
+{% if events.enabled %}
 {% set preview = events %}
-{% set preview_items = collections.events | limit(3) %}
+{% set preview_items = events.items.slice(0, 3) %}
 {% set preview_kind = "event" %}
 {% set preview_tone = "grey" %}
 {% include "partials/home/collection_preview.njk" %}
+{% endif %}
 {% set preview = writing %}
-{% set preview_items = collections.writings | filterByTags(site.featured_tags) | limit(5) %}
+{% set preview_items = (collections.writings | filterByTags(site.featured_tags)).slice(0, 5) %}
 {% set preview_kind = "writing" %}
 {% set preview_tone = "" %}
 {% include "partials/home/collection_preview.njk" %}

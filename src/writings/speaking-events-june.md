@@ -1,4 +1,5 @@
 ---
+templateEngineOverride: njk,md
 title: "Speaking Events - June 2026"
 date: 2026-06-01
 author: Christian Scharen
@@ -12,7 +13,7 @@ description: "Upcoming speaking events, book signings, and preaching engagements
 
 Here are the events where I am teaching, speaking, booksigning, and preaching.
 
-If you'd like to inquire about having me for your event, please email: **christian.scharen@gmail.com**
+If you'd like to inquire about having me for your event, please email: **{{ site.author.email }}**
 
 > **Note:** I use a sliding scale based on ability to pay. 50% of my speaking fees support Indigenous organizations and causes like:
 > - NDN Collective's Landback organizing

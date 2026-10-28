@@ -7,33 +7,64 @@
 <meta name="description" content="{{ seo_description }}">
 <meta name="author" content="{{ seo_author }}">
 <meta name="robots" content="index, follow">
-<meta name="generator" content="BuildAwesome 4.0.0-alpha.10">
+{% set seo_url = site.url + page.url %}
+{% set is_post = tags and "writings" in tags and date %}
+{% set is_event = venue %}
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<link rel="schema.DCTERMS" href="http://purl.org/dc/terms/">
+<meta name="DC.title" content="{{ seo_title }}">
+<meta name="DC.creator" content="{{ seo_author }}">
+<meta name="DC.description" content="{{ seo_description }}">
+<meta name="DC.publisher" content="{{ site.title }}">
+<meta name="DC.identifier" content="{{ seo_url }}">
+<meta name="DC.language" content="{{ site.language or 'en' }}">
+<meta name="DC.format" content="text/html">
+<meta name="DC.type" content="{{ 'Event' if is_event else 'Text' }}">
+<meta name="DC.rights" content="© {% year %} {{ site.author.name }}">
+{% if date and not is_event %}<meta name="DCTERMS.issued" content="{{ date | formatDate }}">{% endif %}
+{% for tag in tags | publicTags %}<meta name="DC.subject" content="{{ tag }}">
+{% endfor %}
+{# Zotero: title rides on og:title/DC.title only; citation_title would make Zotero guess journalArticle #}
+<meta property="zotero:itemType" content="{{ 'blogPost' if is_post else 'webpage' }}">
+<meta name="prism.publicationName" content="{{ site.title }}">
+<meta name="citation_author" content="{{ seo_author }}">
+{% if date and not is_event %}<meta name="citation_publication_date" content="{{ date | formatDate | replace('-', '/') }}">{% endif %}
+<meta name="citation_public_url" content="{{ seo_url }}">
+<meta name="citation_language" content="{{ site.language or 'en' }}">
+<link rel="author" href="{{ site.url }}/">
+{% for social in site.author.social_links %}<link rel="me" href="{{ social.url }}">
+{% endfor %}
+<meta name="generator" content="BuildAwesome {{ generatorVersion }}">
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-<link rel="generator" href="https://www.npmjs.com/package/@awesome.me/buildawesome/v/4.0.0-alpha.10" title="BuildAwesome 4.0.0-alpha.10">
+<link rel="generator" href="https://www.npmjs.com/package/@awesome.me/buildawesome/v/{{ generatorVersion }}" title="BuildAwesome {{ generatorVersion }}">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml" title="Sitemap">
+<link rel="alternate" type="application/atom+xml" href="/feed/feed.xml" title="{{ site.title }} (Atom)">
+<link rel="alternate" type="application/rss+xml" href="/feed/feed.rss" title="{{ site.title }} (RSS)">
+<link rel="alternate" type="application/feed+json" href="/feed/feed.json" title="{{ site.title }} (JSON Feed)">
+<link rel="author" type="text/plain" href="/humans.txt">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" href="/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/ibm-plex-serif-700-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/ibm-plex-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-{% if page.url == '/' %}<link rel="preload" as="image" type="image/webp" href="/img/christianscharen-author-800.webp" imagesrcset="/img/christianscharen-author-800.webp 800w, /img/christianscharen-author-1200.webp 1200w, /img/christianscharen-author-1600.webp 1600w" imagesizes="(min-width: 60rem) 45vw, 100vw" fetchpriority="high">{% endif %}
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+<meta name="application-name" content="{{ site.title }}">
+<meta name="apple-mobile-web-app-title" content="{{ site.title }}">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="preload" href="/assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/ibm-plex-serif-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/ibm-plex-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+{% if page.url == '/' %}<link rel="preload" as="image" type="image/webp" href="{{ image | replace(".jpg", ".webp") }}" imagesrcset="{{ image | srcset }}" imagesizes="{{ featureSizes }}" fetchpriority="high">{% endif %}
 <meta property="og:title" content="{{ seo_title }}">
 <meta property="og:description" content="{{ seo_description }}">
 <meta property="og:url" content="{{ site.url }}{{ page.url }}">
 <meta property="og:type" content="{{ seo_type }}">
 <meta property="og:site_name" content="{{ site.title }}">
 {% if seo_image %}
-<meta property="og:image" content="{{ site.url }}{{ seo_image }}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image" content="{{ site.url }}{{ seo_image | jpg }}">
 <meta property="og:image:alt" content="{{ seo_title }}">
 {% endif %}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@{{ site.author.social.twitter or site.social.twitter }}">
-<meta name="twitter:creator" content="@{{ site.author.social.twitter or site.social.twitter }}">
-<meta name="twitter:title" content="{{ seo_title }}">
-<meta name="twitter:description" content="{{ seo_description }}">
-{% if seo_image %}<meta name="twitter:image" content="{{ site.url }}{{ seo_image }}">{% endif %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -41,7 +72,7 @@
   "headline": "{{ seo_title }}",
   "description": "{{ seo_description }}",
   "url": "{{ site.url }}{{ page.url }}",
-  {% if seo_image %}"image": "{{ site.url }}{{ seo_image }}",{% endif %}
+  {% if seo_image %}"image": "{{ site.url }}{{ seo_image | jpg }}",{% endif %}
   {% if date %}
   "datePublished": "{{ date | formatDate }}",
   "dateModified": "{{ date | formatDate }}",
@@ -59,28 +90,5 @@
     "@type": "WebPage",
     "@id": "{{ site.url }}{{ page.url }}"
   }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "{{ site.url }}"
-    }{% if page.url != '/' %},{% endif %}
-    {% if page.url != '/' %}
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "{{ seo_title }}",
-      "item": "{{ site.url }}{{ page.url }}"
-    }
-    {% endif %}
-  ]
 }
 </script>

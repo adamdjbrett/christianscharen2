@@ -1,0 +1,28 @@
+---
+layout: false
+permalink: /feed/feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+{% set posts = collections.writings | sort(true, false, "date") %}
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="{{ site.url }}/" xml:lang="{{ site.language }}">
+  <title>{{ site.title }}</title>
+  <subtitle>{{ site.description }}</subtitle>
+  <link href="{{ site.url }}/feed/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="{{ site.url }}/" rel="alternate" type="text/html"/>
+  <id>{{ site.url }}/</id>
+  <updated>{{ posts[0].date.toISOString() }}</updated>
+  <author><name>{{ site.author.name }}</name><uri>{{ site.url }}/</uri></author>
+  {% for post in posts %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ site.url }}{{ post.url }}" rel="alternate" type="text/html"/>
+    <id>{{ site.url }}{{ post.url }}</id>
+    <published>{{ post.date.toISOString() }}</published>
+    <updated>{{ post.date.toISOString() }}</updated>
+    {% if post.data.description %}<summary>{{ post.data.description }}</summary>{% endif %}
+    {% for tag in post.data.tags | publicTags %}<category term="{{ tag }}"/>{% endfor %}
+    <content type="html">{{ post.content | absoluteUrls(site.url) }}</content>
+  </entry>
+  {% endfor %}
+</feed>
