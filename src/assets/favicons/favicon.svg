@@ -1,8 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
   <style>
-    circle{fill:#111}path{fill:#fff}
-    @media (prefers-color-scheme: dark){circle{fill:#fff}path{fill:#111}}
+    .art { stroke: #000 }
+    @media (prefers-color-scheme: dark) { .art { stroke: #fff } }
   </style>
-  <circle cx="128" cy="128" r="120"/>
-  <path d="M232,72H160a40,40,0,0,0-32,16A40,40,0,0,0,96,72H24a8,8,0,0,0-8,8V200a8,8,0,0,0,8,8H96a24,24,0,0,1,24,24,8,8,0,0,0,16,0,24,24,0,0,1,24-24h72a8,8,0,0,0,8-8V80A8,8,0,0,0,232,72ZM96,192H32V88H96a24,24,0,0,1,24,24v88A39.81,39.81,0,0,0,96,192Zm128,0H160a39.81,39.81,0,0,0-24,8V112a24,24,0,0,1,24-24h64ZM89.6,43.19a48,48,0,0,1,76.8,0,8,8,0,0,1-12.79,9.62,32,32,0,0,0-51.22,0A8,8,0,1,1,89.6,43.19Z"/>
+  <circle class="art" cx="500" cy="500" fill="none" r="408" stroke-width="7"/>
+  <g class="art" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16">
+    <path d="M310 355 H255 V690 H442"/>
+    <path d="M558 690 H745 V355 H690"/>
+    <path d="M310 285 C410 286 475 305 500 345 C525 305 590 286 690 285 V615 C590 615 525 635 500 683 C475 635 410 615 310 615 Z"/>
+    <path d="M500 345 V683"/>
+    <path d="M360 387 Q410 392 452 410"/>
+    <path d="M360 455 Q410 460 452 478"/>
+    <path d="M360 522 Q410 527 452 545"/>
+    <path d="M640 387 Q590 392 548 410"/>
+    <path d="M640 455 Q590 460 548 478"/>
+    <path d="M640 522 Q590 527 548 545"/>
+  </g>
 </svg>

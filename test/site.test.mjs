@@ -56,6 +56,7 @@ assert.match(pageLayout, /partials\/article\.njk/);
 assert.match(article, /partials\/linked_picture\.njk/);
 assert.equal([...home.matchAll(/partials\/home\/collection_preview\.njk/g)].length, 2);
 assert.ok(home.indexOf("about_contact.njk") < home.indexOf("custer.njk"));
+assert.match(siteData, /^url: "https:\/\/[^"\/]+"/m); // absolute, no trailing slash
 assert.match(navigationData, /^primary:\n  - text: "About"/);
 assert.doesNotMatch(hero, /hero-subtitle|hero-description/);
 assert.match(indexData, /Christian Scharen is the Gordon Braatz Chair/);
