@@ -1,5 +1,6 @@
 # Christian Scharen | [christianscharen.com](https://christianscharen.com)
 [![Deploy to xmit](https://github.com/adamdjbrett/christianscharen2/actions/workflows/xmit-deploy.yml/badge.svg)](https://github.com/adamdjbrett/christianscharen2/actions/workflows/xmit-deploy.yml)
+
 [build awesome](https://build.awesome.me) with hosting by [🛰️ xmit](https://xmit.co)
 
 Website for Christian Scharen, practical theologian and writer: his books, research, writing, speaking and newsletter.
