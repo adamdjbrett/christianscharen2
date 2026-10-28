@@ -31,7 +31,19 @@ jobs:
       - name: Verify build output
         run: test -f _site/index.html && test -f _site/404.html && grep -q "https://$XMIT_SITE/" _site/index.html
       - name: Deploy to Xmit team 626
-        run: npx xmit "$XMIT_SITE@$XMIT_TEAM" _site
+        run: |
+          for attempt in 1 2 3; do
+            if npx xmit "$XMIT_SITE@$XMIT_TEAM" _site; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo "::error::xmit deployment failed after $attempt attempts."
+              exit 1
+            fi
+            delay=$((attempt * 10))
+            echo "xmit deployment failed (attempt $attempt/3); retrying in ${delay}s..."
+            sleep "$delay"
+          done
         env:
           XMIT_KEY: ${{ secrets.XMIT_KEY }}
       # Cloudflare keeps every file for a year (s-maxage in src/xmit.toml), so the
