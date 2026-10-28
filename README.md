@@ -1,4 +1,5 @@
-# Christian Scharen
+# Christian Scharen | [christianscharen.com](https://christianscharen.com)
+[build awesome](https://build.awesome.me) with hosting by [🛰️ xmit](https://xmit.co)
 
 Website for Christian Scharen, practical theologian and writer: his books, research, writing, speaking and newsletter.
 

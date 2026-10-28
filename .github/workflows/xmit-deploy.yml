@@ -1,4 +1,4 @@
-name: Deploy to Xmit
+name: Deploy to xmit
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      XMIT_SITE: chris2.xmit.dev
+      XMIT_SITE: christianscharen.com
       XMIT_TEAM: 626
     steps:
       - uses: actions/checkout@v7

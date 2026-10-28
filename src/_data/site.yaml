@@ -2,7 +2,7 @@
 
 title: "Christian Scharen"  # site name: tabs, feeds, nav
 description: "Writing, books, and public work by practical theologian Christian Scharen."  # default meta description
-url: "https://chris2.xmit.dev"  # live address, no trailing slash
+url: "christianscharen.com"  # live address, no trailing slash
 language: "en"  # page language
 
 land_acknowledgement: |  # footer text, markdown
