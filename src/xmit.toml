@@ -1,30 +1,52 @@
 # xmit.co response headers (https://xmit.co); copied to the site root by the build.
-# `on` is a path regex; the patterns don't overlap, so no path gets two values.
+# `on` is a path regex. Patterns for the same header name must not overlap, so no
+# path gets two values.
+#
+# Caching: Cloudflare's edge keeps everything for a year (s-maxage, which browsers
+# ignore); the deploy workflow purges the whole Cloudflare cache after every deploy.
+# Browser lifetimes (max-age) stay short because file names aren't versioned.
 
-# HTML: always revalidate.
+# HTML: browsers always revalidate (with the edge, not xmit).
 [[headers]]
 name = "Cache-Control"
-value = "public, max-age=0, must-revalidate"
+value = "public, max-age=0, must-revalidate, s-maxage=31536000"
 on = "(?:/|\\.html)$"
 
-# CSS: changed in place, so one day.
+# CSS: changed in place, so 4 hours in browsers.
 [[headers]]
 name = "Cache-Control"
-value = "public, max-age=86400"
+value = "public, max-age=14400, s-maxage=31536000"
 on = "\\.css$"
 
 # Images, icons, fonts: names aren't versioned and covers do get replaced, so 30 days.
 [[headers]]
 name = "Cache-Control"
-value = "public, max-age=2592000, stale-while-revalidate=86400"
+value = "public, max-age=2592000, s-maxage=31536000, stale-while-revalidate=86400"
 on = "\\.(?:webp|png|jpe?g|svg|ico|woff2)$"
 
 # Feeds, sitemap, manifest, text files.
 [[headers]]
 name = "Cache-Control"
-value = "public, max-age=3600"
-on = "\\.(?:xml|rss|json|txt|webmanifest)$"
+value = "public, max-age=3600, s-maxage=31536000"
+on = "\\.(?:xml|rss|json|txt|webmanifest|toml)$"
 
+# Security headers on every response.
+[[headers]]
+name = "Cross-Origin-Opener-Policy"
+value = "same-origin"
+on = "^/"
+
+[[headers]]
+name = "X-Content-Type-Options"
+value = "nosniff"
+on = "^/"
+
+[[headers]]
+name = "Referrer-Policy"
+value = "strict-origin-when-cross-origin"
+on = "^/"
+
+# Content types xmit can't infer from the extension.
 [[headers]]
 name = "Content-Type"
 value = "application/rss+xml; charset=utf-8"

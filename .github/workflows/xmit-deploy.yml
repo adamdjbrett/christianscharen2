@@ -31,6 +31,21 @@ jobs:
       - name: Verify build output
         run: test -f _site/index.html && test -f _site/404.html && grep -q "https://$XMIT_SITE/" _site/index.html
       - name: Deploy to Xmit team 626
-        run: npx --yes @xmit.co/xmit@0.5.2-0 "$XMIT_SITE@$XMIT_TEAM" _site
+        run: npx xmit "$XMIT_SITE@$XMIT_TEAM" _site
         env:
           XMIT_KEY: ${{ secrets.XMIT_KEY }}
+      # Cloudflare keeps every file for a year (s-maxage in src/xmit.toml), so the
+      # new build only shows once the cache is purged. Fail loudly if it isn't.
+      - name: Purge Cloudflare cache
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        run: |
+          if [ -z "$CF_API_TOKEN" ] || [ -z "$CF_ZONE_ID" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ZONE_ID not set: purge Cloudflare by hand or visitors keep the old build."
+            exit 1
+          fi
+          curl -fsS -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
+            -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}'
+          echo "Cloudflare cache purged"

@@ -33,7 +33,6 @@ Install Build Awesome only at the pinned `4.0.0-alpha.10`. Its `latest` tag is a
 | `src/assets/images/` | Published images (see below). |
 | `src/feed/`, `src/pages/` | Atom, RSS and JSON feeds; sitemap, robots, `humans.txt`, web manifest, 404. |
 | `src/xmit.toml` | Response headers (caching, feed content types) for xmit. |
-| `images-src/` | Original high-resolution scans of book covers, kept so smaller cover images can be regenerated. Not published. Keep them. |
 | `buildawesome.config.js` | Filters, shortcodes, collections and the build hooks. |
 | `.pages.yml` | Pages CMS editing setup. |
 

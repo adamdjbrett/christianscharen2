@@ -133,7 +133,8 @@ a,button,.btn-editorial{min-height: var(--control-height)}
 }
 *,*::before,*::after{box-sizing:border-box}
 html,body{overflow-x:clip}
-html{scroll-behavior:smooth}
+/* phones: keep focused elements and #anchors clear of the sticky top nav (WCAG 2.4.11) */
+html{scroll-behavior:smooth;scroll-padding-block-start:calc(var(--space-2xl) + var(--space-sm))}
 body{margin:0;background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-base);line-height:1.65;-webkit-font-smoothing:antialiased}
 main{min-width:0}
 img,svg{display:block;max-width:100%}
@@ -283,6 +284,7 @@ a:hover,.site-index a:hover,.article-item:hover,.articles-item:hover{text-decora
 .text-md-end{text-align:end}
 }
 @media (min-width:60rem){
+html{scroll-padding-block-start:0}
 body{padding-inline-start:var(--rail-width)}
 .site-nav{position:fixed;inset:0 auto 0 0;width:var(--rail-width);min-height:100dvh;display:flex;flex-direction:column;align-items:stretch;gap:var(--space-xl);padding:var(--space-xl) var(--space-lg);border-inline-end:var(--rule-hairline) solid var(--color-rule);border-block-end:0}
 .site-wordmark{align-items:flex-start;overflow:visible;font-size:var(--text-lg);line-height:1.1;white-space:normal}

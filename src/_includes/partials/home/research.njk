@@ -6,7 +6,7 @@
       <article>
         <h3>{{ item.title }}</h3>
         <p>{{ item.description }}</p>
-        <a class="btn-editorial secondary-link" href="{{ item.url }}">{{ research.button }}</a>
+        <a class="btn-editorial secondary-link" href="{{ item.url }}" aria-label="{{ research.button }}: {{ item.title }}">{{ research.button }}</a>
       </article>
       {% endfor %}
     </div>

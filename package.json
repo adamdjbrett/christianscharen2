@@ -9,7 +9,8 @@
     "test": "node test/site.test.mjs"
   },
   "devDependencies": {
-    "@awesome.me/buildawesome": "4.0.0-alpha.10"
+    "@awesome.me/buildawesome": "4.0.0-alpha.10",
+    "@xmit.co/xmit": "0.5.2-0"
   },
   "dependencies": {
     "js-yaml": "5.5.0"
