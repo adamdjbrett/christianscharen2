@@ -9,7 +9,7 @@
       {% if previous %}
       <div class="col-md-6">
         <a href="{{ previous.url }}" class="text-decoration-none d-block p-4 border rounded-3 bg-light-hover transition">
-          <span class="d-block text-muted small text-uppercase tracking-wide mb-2"><span class="me-2">{% icon "arrow-left" %}</span> Previous {{ pagination_label }}</span>
+          <span class="pager-label text-muted small text-uppercase tracking-wide mb-2">{% icon "arrow-left" %}Previous {{ pagination_label }}</span>
           <h2 class="fs-4 mb-0 text-dark">{{ previous.data.title }}</h2>
         </a>
       </div>
@@ -17,7 +17,7 @@
       {% if next %}
       <div class="col-md-6 {% if not previous %}offset-md-6{% endif %}">
         <a href="{{ next.url }}" class="text-decoration-none d-block p-4 border rounded-3 bg-light-hover transition text-md-end">
-          <span class="d-block text-muted small text-uppercase tracking-wide mb-2">Next {{ pagination_label }} <span class="ms-2">{% icon "arrow-right" %}</span></span>
+          <span class="pager-label text-muted small text-uppercase tracking-wide mb-2">Next {{ pagination_label }}{% icon "arrow-right" %}</span>
           <h2 class="fs-4 mb-0 text-dark">{{ next.data.title }}</h2>
         </a>
       </div>

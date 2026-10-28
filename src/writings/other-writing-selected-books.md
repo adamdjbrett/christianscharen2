@@ -6,32 +6,27 @@ tags:
   - writing
   - books
 description: "Selected books by Christian Scharen."
+templateEngineOverride: njk,md
 ---
 
 # Other Writing: Selected Books
 
-## Practical Theology
+{# Built from site.yaml selected_books, the same list as the home page grid. #}
+{% for group in site.selected_books.groups %}
+## {{ group.title }}
 
-### Ethnography as Christian Theology and Ethics
-*Co-authored with Aana Vigen*
-[Description and link]
+{% for book in group.items %}
+<div class="book-entry">
+{% picture book.image, book.name + " book cover" %}
+<div>
+<h3>{{ book.name }}</h3>
+{% if book.subtitle %}<p><em>{{ book.subtitle }}</em></p>{% endif %}
+{% if book.authors %}<p class="text-muted">{{ book.authors }}</p>{% endif %}
+{% if book.publisher %}<p class="text-muted small">{{ book.publisher }}</p>{% endif %}
+{% if book.description %}<p>{{ book.description }}</p>{% endif %}
+<p><a href="{{ book.url }}">More about {{ book.name }}</a></p>
+</div>
+</div>
 
-### Christian Practical Wisdom
-[Description and link]
-
-### Fieldwork in Theology
-[Description and link]
-
-### Faith as a Way of Life
-[Description and link]
-
-## Music and Religion
-
-### Someone Has To Care
-[Description and link]
-
-### Broken Hallelujahs
-[Description and link]
-
-### One Step Closer
-[Description and link]
+{% endfor %}
+{% endfor %}

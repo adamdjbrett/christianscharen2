@@ -1,12 +1,12 @@
 <section class="section-padding border-top-custom{% if preview_tone %} {{ preview_tone }}{% endif %}" id="{{ preview.id }}">
   <div class="container">
-    <div class="row mb-5 reveal">
+    <div class="row mb-5">
       <div class="col-lg-8">
         <span class="font-sans text-uppercase text-accent tracking-wider text-sm d-block mb-3">{{ preview.info }}</span>
         <h2 class="section-heading">{{ preview.title }}</h2>
       </div>
     </div>
-    <div class="row reveal" style="transition-delay: 0.2s;">
+    <div class="row">
       <div class="col-12">
         <div class="border-top-custom">
           {% for item in preview_items %}

@@ -12,12 +12,6 @@ name = "Cache-Control"
 value = "public, max-age=0, must-revalidate, s-maxage=31536000"
 on = "(?:/|\\.html)$"
 
-# CSS: changed in place, so 4 hours in browsers.
-[[headers]]
-name = "Cache-Control"
-value = "public, max-age=14400, s-maxage=31536000"
-on = "\\.css$"
-
 # Images, icons, fonts: names aren't versioned and covers do get replaced, so 30 days.
 [[headers]]
 name = "Cache-Control"

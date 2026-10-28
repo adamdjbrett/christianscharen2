@@ -263,7 +263,18 @@ a[href^="http"]:not([href^="https://christianscharen.com"]):not(.social-links a)
 .p-4{padding:var(--space-lg)}
 .p-md-5{padding:var(--space-2xl)}
 .ph-icon{width:1em;height:1em;flex:none;fill:currentColor}
-.reveal{opacity:1;transform:none}
+/* previous/next cards: the arrow sits beside its label (svg is display:block by default) */
+.pager-label{display:flex;align-items:center;gap:var(--space-xs)}
+.text-md-end .pager-label{justify-content:flex-end}
+/* Selected Books post: cover beside title and link */
+.book-entry{display:grid;grid-template-columns:minmax(0,8rem) minmax(0,1fr);gap:var(--space-lg);align-items:start;margin-block:var(--space-lg)}
+.book-entry img{width:100%;aspect-ratio:2 / 3;object-fit:cover;border:var(--rule-hairline) solid var(--color-rule)}
+/* scoped like the post-heading rule it overrides; text-box trims the line gap so the cover meets the top of the capitals */
+main>.section-padding:first-child .book-entry h3{margin-block:0 var(--space-sm);text-box:trim-both cap alphabetic}
+.book-entry p{margin-block:0 var(--space-xs)}
+/* publication lists on posts: plain citations separated by hairlines, hanging indent for wrapped lines */
+.pub-list ul{margin:0;padding:0;list-style:none;border-block-start:var(--rule-hairline) solid var(--color-rule)}
+.pub-list li{max-width:var(--measure);margin:0;padding:var(--space-sm) 0 var(--space-sm) var(--space-lg);text-indent:calc(var(--space-lg) * -1);border-block-end:var(--rule-hairline) solid var(--color-rule)}
 main>.section-padding:first-child .justify-content-center>.col-lg-8{max-width:var(--measure);margin-inline:0 auto}
 main>.section-padding:first-child p,main>.section-padding:first-child li{line-height:1.75}
 main>.section-padding:first-child h2{margin-block:var(--space-2xl) var(--space-md);font-size:var(--text-xl)}

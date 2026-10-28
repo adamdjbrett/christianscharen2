@@ -55,27 +55,59 @@ selected_books:
   groups:  # one column each
     - title: Practical Theology
       items:
+        # authors, publisher and description are optional; the Selected Books post shows them
         - name: Ethnography as Christian Theology and Ethics
-          url: "https://www.bloomsbury.com/us/ethnography-as-christian-theology-and-ethics-9780567710468/"
+          authors: Edited by Aana Marie Vigen and Christian Scharen
+          publisher: T&T Clark (Bloomsbury), 2024 · Fully revised 2nd edition
+          description: >-
+            Vigen and Scharen's revised chapters on what ethnography is, and why theologians and
+            ethicists turn to it, sit alongside nine new studies by leading and emerging scholars,
+            from Indonesian migrant workers in Singapore to vigils kept after gun violence. The
+            edition honours the life and work of the Rev. Dr. Melissa D. Browning.
+          url: "https://www.bloomsbury.com/us/ethnography-as-christian-theology-and-ethics-9780567710451/"
           image: /assets/images/ethnography-cover.webp
         - name: Christian Practical Wisdom
+          authors: By Dorothy C. Bass, Kathleen A. Cahalan, Bonnie J. Miller-McLemore, James R. Nieman and Christian B. Scharen
+          publisher: William B. Eerdmans, 2016
+          description: >-
+            In this richly collaborative work, five distinguished scholars examine the oft-neglected
+            embodied practical wisdom that is essential for true theological understanding and faithful
+            Christian living. After first showing what Christian practical wisdom is and does in several
+            real-life situations, the authors tell why such practical wisdom matters and how it operates,
+            exploring reasons behind its decline in both the academy and the church and setting forth
+            constructive cases for its renewal.
           url: "https://www.eerdmans.com/9781467445061/christian-practical-wisdom/"
           image: /assets/images/christian-practical-wisdom-cover.webp
         - name: Fieldwork in Theology
+          subtitle: Exploring the Social Context of God's Work in the World
+          publisher: Baker Academic, 2015
+          description: >-
+            Makes the case for fieldwork as a way of doing theology: attending to the social world
+            as the place where God is at work. Each chapter draws on a thinker about method and the
+            body, Bachelard, Merleau-Ponty, Bourdieu and Wacquant, to sharpen how theologians see,
+            listen and take part.
           url: "https://bakerpublishinggroup.com/products/9780801049309_fieldwork-in-theology"
           image: /assets/images/fieldwork-in-theology-cover.webp
         - name: Faith as a Way of Life
+          subtitle: "A Vision for Pastoral Leadership"
+          publisher: William B. Eerdmans, 2008
           url: "https://www.eerdmans.com/9780802862310/faith-as-a-way-of-life/"
           image: /assets/images/faith-as-a-way-of-life-cover.webp
     - title: Music and religion
       items:
         - name: Someone Has To Care
+          subtitle: "The Roots and Hip-Hop's Prophetic Calling"
+          publisher: Wipf and Stock
           url: "https://wipfandstock.com/9781532612183/someone-has-to-care/"
           image: /assets/images/someone-has-to-care-cover.webp
         - name: Broken Hallelujahs
+          subtitle: "Why Popular Music Matters to Those Seeking God"
+          publisher: 2011
           url: "https://www.goodreads.com/book/show/11067432-broken-hallelujahs"
           image: /assets/images/broken-hallelujahs-cover.webp
         - name: One Step Closer
+          subtitle: "Why U2 Matters to Those Seeking God"
+          publisher: Brazos Press, 2006
           url: "https://brazospress.com/"
           image: /assets/images/one-step-closer-cover.webp
 

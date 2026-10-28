@@ -185,6 +185,10 @@ content:
                 list: true
                 fields:
                   - { name: name, label: Title, type: string }
+                  - { name: subtitle, label: Subtitle, type: string, description: Optional }
+                  - { name: authors, label: Authors / editors, type: string, description: 'Optional, e.g. "Edited by …" or "By …"' }
+                  - { name: publisher, label: Publisher and year, type: string, description: Optional }
+                  - { name: description, label: Description, type: text, description: Optional; shown on the Selected Books post }
                   - { name: url, label: Link, type: string }
                   - { name: image, label: Cover, type: image, description: Upload a .webp and a .jpg }
 

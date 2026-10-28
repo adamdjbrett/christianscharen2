@@ -1,5 +1,5 @@
 import * as yaml from 'js-yaml';
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { basename, dirname } from 'node:path';
 
 // Width/height of a PNG, JPEG or WebP under src/, read from the file header so templates never hard-code sizes.
@@ -59,6 +59,7 @@ const iconPaths = {
   "arrow-left": "M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z",
   "arrow-right": "M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z",
   "map-pin": "M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z",
+  envelope: "M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z",
   clock: "M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"
 };
 
@@ -119,11 +120,10 @@ export default function(eleventyConfig) {
   eleventyConfig.addCollection("tagList", collection =>
     [...new Set(collection.getAll().flatMap(item => item.data.tags ?? []))].filter(tag => !collectionTags.has(tag)).sort());
   eleventyConfig.addFilter("filterByTags", (items, tags) => items.filter(item => tags.some(tag => item.data.tags?.includes(tag))));
-  eleventyConfig.addWatchTarget("src/assets/css/");
-  eleventyConfig.on("eleventy.after", ({ dir }) => {
-    mkdirSync(`${dir.output}/assets/css`, { recursive: true });
-    writeFileSync(`${dir.output}/assets/css/style.css`, minifyCss(readFileSync("src/assets/css/style.css", "utf8")));
-  });
+  // the one stylesheet is inlined into every page: no render-blocking request (it is ~4.5 KB gzipped).
+  // A shortcode, not global data, so `npm run dev` picks up CSS edits without a restart.
+  eleventyConfig.addWatchTarget("./src/assets/css/style.css");
+  eleventyConfig.addShortcode("styleCss", () => minifyCss(readFileSync("src/assets/css/style.css", "utf8")));
   eleventyConfig.addPassthroughCopy("src/assets/{images,fonts,icons}");
   eleventyConfig.addPassthroughCopy({ "src/assets/favicons": "/" });
   eleventyConfig.addPassthroughCopy({ "src/xmit.toml": "xmit.toml" });

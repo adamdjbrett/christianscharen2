@@ -1,11 +1,11 @@
 <section class="section-padding border-top-custom grey">
   <div class="container split">
     {% for col in [newsletter, speaking] %}
-    <div class="split-col reveal" id="{{ col.id }}">
+    <div class="split-col" id="{{ col.id }}">
       <span class="font-sans text-uppercase text-accent tracking-wider text-sm">{{ col.info }}</span>
       <h2 class="section-heading">{{ col.title }}</h2>
       <p>{{ col.text }}</p>
-      <div><a href="{{ col.button.url or 'mailto:' + site.author.email }}" class="btn-editorial">{{ col.button.text }}</a></div>
+      <div><a href="{{ col.button.url or 'mailto:' + site.author.email }}" class="btn-editorial">{% if not col.button.url %}{% icon "envelope" %}{% endif %}{{ col.button.text }}</a></div>
       <p class="font-serif fst-italic text-muted">{{ col.note }}</p>
     </div>
     {% endfor %}

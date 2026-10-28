@@ -1,10 +1,10 @@
 <section class="section-padding border-top-custom" id="{{custer.id}}">
         <div class="container">
             <div class="row align-items-center gx-lg-5">
-                <div class="col-lg-5 mb-5 mb-lg-0 reveal">
+                <div class="col-lg-5 mb-5 mb-lg-0">
                     {% set pic = custer %}{% set pic_class = "img-fluid" %}{% include "partials/linked_picture.njk" %}
                 </div>
-                <div class="col-lg-6 offset-lg-1 reveal" style="transition-delay: 0.2s;">
+                <div class="col-lg-6 offset-lg-1">
                     <span class="font-sans text-uppercase text-accent tracking-wider text-sm d-block mb-3">{{custer.info}}</span>
                     <h2 class="section-heading">{% if custer.url %}<a href="{{custer.url}}" class="fw-bold text-dark">{{custer.title}}</a>{% else %}{{custer.title}}{% endif %}</h2>
                     <p class="mb-4 text-muted fs-5">
