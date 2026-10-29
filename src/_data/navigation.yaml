@@ -15,3 +15,5 @@ primary:
     url: "#speaking"
   - text: "Events"
     url: "#events"
+  - text: "Selected Books"
+    url: "#selected-books"

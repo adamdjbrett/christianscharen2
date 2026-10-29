@@ -1,6 +1,6 @@
 import * as yaml from 'js-yaml';
-import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { basename, dirname } from 'node:path';
+import { existsSync, readdirSync, readFileSync, rmSync } from 'node:fs';
+import { basename, dirname, join } from 'node:path';
 
 // Width/height of a PNG, JPEG or WebP under src/, read from the file header so templates never hard-code sizes.
 export function imageSize(src) {
@@ -67,6 +67,13 @@ export default function(eleventyConfig) {
   eleventyConfig.setQuietMode(true);
   // events.yaml `enabled: false` unpublishes the /events/ pages (home, nav and sitemap check the flag too)
   if (!yaml.load(readFileSync("src/_data/events.yaml", "utf8")).enabled) eleventyConfig.ignores.add("src/events/");
+  if (!yaml.load(readFileSync("src/_data/site.yaml", "utf8")).writings.enabled) {
+    eleventyConfig.ignores.add("src/writings/");
+    // Remove previously published pages and tag lists before rebuilding with writings disabled.
+    eleventyConfig.on("eleventy.before", ({ dir }) => {
+      for (const folder of ["writings", "tags"]) rmSync(join(dir.output, folder), { recursive: true, force: true });
+    });
+  }
   // ponytail: reuse Eleventy's own markdown-it instead of installing a second copy
   let md;
   eleventyConfig.amendLibrary("md", lib => { md = lib.set({ linkify: true, typographer: true }); });

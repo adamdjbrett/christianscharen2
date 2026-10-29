@@ -1,6 +1,6 @@
 {% macro links(items) %}
 {% for n in items %}
-{% if n.url != "#events" or events.enabled %}<li><a href="{% if nav_home %}/{% endif %}{{ n.url }}">{{ n.text }}</a></li>{% endif %}
+{% if (n.url != "#events" or events.enabled) and (n.url != "#writing" or site.writings.enabled) %}<li><a href="{% if nav_home %}/{% endif %}{{ n.url }}">{{ n.text }}</a></li>{% endif %}
 {% endfor %}
 {% endmacro %}
 <nav class="site-nav" aria-label="Primary">

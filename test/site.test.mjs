@@ -40,7 +40,10 @@ assert.match(seo, /rel="sitemap"/);
 assert.match(seo, /BuildAwesome {{ generatorVersion }}/);
 assert.match(seo, /rel="preload" as="image"/);
 assert.match(seo, /ibm-plex-serif-400-latin\.woff2/);
-assert.match(favicon, /prefers-color-scheme: dark/);
+assert.match(favicon, /stroke: #666666/);
+assert.match(favicon, /<rect[^>]+fill="#ffffff"/);
+const grayChannel = ((0x66 / 255 + 0.055) / 1.055) ** 2.4;
+assert.ok(1.05 / (grayChannel + 0.05) >= 4.5, "favicon gray must contrast with its white backing");
 assert.match(criticalScript, /localStorage\.getItem/);
 assert.match(loader, /localStorage\.setItem/);
 assert.doesNotMatch(loader, /import\(/);
@@ -77,3 +80,4 @@ for (const webp of images.filter(f => f.endsWith(".webp"))) {
   assert.deepEqual(imageSize(`/assets/images/${webp}`), imageSize(`/assets/images/${jpg}`), `${webp} and ${jpg} differ in size`);
 }
 console.log("site smoke test passed");
+await import("./writings.test.mjs");

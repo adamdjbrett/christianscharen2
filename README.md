@@ -44,6 +44,7 @@ Install Build Awesome only at the pinned `4.0.0-alpha.10`. Its `latest` tag is a
 **By hand:** edit the files above. The comments in `src/index.md` and `src/_data/site.yaml` explain each field.
 
 - Christian's email is set once, as `author.email` in `site.yaml`. Every email link and button uses it.
+- In `src/_data/site.yaml`, set `writings.enabled` to `true` to publish `/writings/` and the home page's Other Writing section, or `false` to unpublish them. Rebuild after changing the switch; navigation, tags, sitemap and feed entries follow it too.
 - Offsite links open in a new tab and get a ↗ automatically.
 
 ## Images

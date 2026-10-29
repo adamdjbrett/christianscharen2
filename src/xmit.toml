@@ -1,4 +1,4 @@
-# xmit.co response headers (https://xmit.co); copied to the site root by the build.
+# xmit.co configuration (https://xmit.co); copied to the site root by the build.
 # `on` is a path regex. Patterns for the same header name must not overlap, so no
 # path gets two values.
 #
@@ -60,3 +60,8 @@ on = "/feed/feed\\.json$"
 name = "Content-Type"
 value = "application/manifest+json"
 on = "\\.webmanifest$"
+
+[[redirects]]
+from = "^/admin/?$"
+to = "https://app.pagescms.org/adamdjbrett/christianscharen2/main/collection/writings"
+permanent = false

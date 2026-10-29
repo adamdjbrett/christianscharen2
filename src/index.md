@@ -8,7 +8,7 @@ image: /assets/images/christianscharen-author.webp  # hero photo + share image
 # Top of page
 hero: 
  id: "home"
- title: Christian Scharen  # big heading; switch to keywords
+ title: Writer, Teacher, Pastor, Practical Theologian  # big heading; switch to keywords
 
 # Bio beside the photo; buttons live in site.yaml contact.links
 about: 

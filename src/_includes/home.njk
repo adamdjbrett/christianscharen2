@@ -14,9 +14,11 @@ layout: default.njk
 {% set preview_tone = "grey" %}
 {% include "partials/home/collection_preview.njk" %}
 {% endif %}
+{% if site.writings.enabled %}
 {% set preview = writing %}
 {% set preview_items = (collections.writings | filterByTags(site.featured_tags)).slice(0, 5) %}
 {% set preview_kind = "writing" %}
 {% set preview_tone = "" %}
 {% include "partials/home/collection_preview.njk" %}
+{% endif %}
 {% include "partials/home/selected_books.njk" %}

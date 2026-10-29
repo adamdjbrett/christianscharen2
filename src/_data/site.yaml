@@ -5,6 +5,9 @@ description: "Writing, books, and public work by practical theologian Christian 
 url: "https://christianscharen.com"  # live address with https://, no trailing slash
 language: "en"  # page language
 
+writings:
+  enabled: false  # true publishes /writings/, its home section, menu link, tags and feed entries
+
 land_acknowledgement: |  # footer text, markdown
   I acknowledge with respect the Bodwéwadmi (Potawatomi) people on whose unceded and ancestral lands I reside in what is now called Chicago. To find the Indigenous origins of the land where you live, visit the [Native Land project](https://native-land.ca/).
 
@@ -52,6 +55,7 @@ contact:
 # Home page book grid; each image needs a .webp and .jpg
 selected_books:
   title: Selected Books
+  id: selected-books
   groups:  # one column each
     - title: Practical Theology
       items:

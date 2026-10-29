@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
   <style>
-    .art { stroke: #000 }
-    @media (prefers-color-scheme: dark) { .art { stroke: #fff } }
+    .art { stroke: #666666 }
   </style>
-  <circle class="art" cx="500" cy="500" fill="none" r="408" stroke-width="7"/>
-  <g class="art" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16">
+  <rect width="1000" height="1000" fill="#ffffff"/>
+  <circle class="art" cx="500" cy="500" fill="none" r="408" stroke-width="32"/>
+  <g class="art" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="40">
     <path d="M310 355 H255 V690 H442"/>
     <path d="M558 690 H745 V355 H690"/>
     <path d="M310 285 C410 286 475 305 500 345 C525 305 590 286 690 285 V615 C590 615 525 635 500 683 C475 635 410 615 310 615 Z"/>

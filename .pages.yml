@@ -132,6 +132,11 @@ content:
     type: file
     path: src/_data/site.yaml
     fields:
+      - name: writings
+        label: Writings
+        type: object
+        fields:
+          - { name: enabled, label: Publish writings, type: boolean, description: Off hides all writings pages and their home section and menu link }
       - { name: title, label: Site name, type: string }
       - { name: description, label: Default description, type: text }
       - { name: url, label: Live address, type: string, description: No trailing slash }
