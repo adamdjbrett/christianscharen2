@@ -64,6 +64,10 @@ Then point the front matter at the `.webp`. Through Pages CMS, upload both files
 
 ## Deploying
 
+The PWA manifest and service worker load from the footer after the window load event, when the browser is idle. Visitors can install the site in supporting browsers. The worker stores only `/offline.html`, showing it when a navigation fails without retaining outdated posts. Bump `scharen-offline-v1` in `src/sw.js` when changing the offline page. Service worker JavaScript always revalidates; registration also bypasses the HTTP cache.
+
+Cloudflare injects its email decoder at the edge with `defer`; its loading is controlled by Cloudflare rather than this build. The head preconnects to the Cloudflare Insights origin for its injected analytics beacon.
+
 Every push to `main` runs `.github/workflows/xmit-deploy.yml`: install, test, build, then upload `_site/` to xmit. It needs the repository secret `XMIT_KEY`.
 
 ## Metadata

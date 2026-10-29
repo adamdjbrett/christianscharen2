@@ -82,3 +82,4 @@ for (const webp of images.filter(f => f.endsWith(".webp"))) {
 }
 console.log("site smoke test passed");
 await import("./writings.test.mjs");
+await import("./pwa.test.mjs");
