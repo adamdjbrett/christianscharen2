@@ -123,15 +123,15 @@ speaking:
   id: speaking
   info: Engagements
   title: Speaking
-  text: Here are the events where I am teaching, speaking, book signing, or
-    preaching. If you’d like to inquire about having me for your event, please
-    email with your details.
+  text: I am open to joining your community to teach a class, speak for an event,
+    host a book signing, or preach at a worship service. If you’d like to
+    inquire about having me for your event, please email with your details.
   button:
     text: Email Christian
   note: Please note I use a sliding scale based on ability to pay, and 50% of my
     speaking fees support Indigenous organizations and causes like NDN
-    Collective’s Landback organizing, the Mary Sully Foundation, Woyatan
-    Lutheran Church in Rapid City, South Dakota.
+    Collective’s Landback organizing, Woyatan Lutheran Church in Rapid City,
+    South Dakota, and other activist Indigenous organizations and ministries.
 writing:
   id: writing
   info: Archives & Essays
