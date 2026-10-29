@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-4 mb-5 mb-lg-0">
-        {% picture about.image, site.author.name, { class: "img-cover" } %}
+        {% picture about.image, site.author.name, { class: "img-cover", sizes: "(min-width: 60rem) calc((min(100vw - 13rem, 82rem) - clamp(2rem, 8vw, 8rem) - 6rem) * 5 / 12), calc(100vw - clamp(2rem, 8vw, 8rem))" } %}
       </div>
       <div class="col-lg-7 offset-lg-1">
         <h2 class="section-heading">{{ about.title }}</h2>

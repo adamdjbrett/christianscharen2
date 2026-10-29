@@ -132,6 +132,8 @@ export default function(eleventyConfig) {
   eleventyConfig.addWatchTarget("./src/assets/css/style.css");
   eleventyConfig.addShortcode("styleCss", () => minifyCss(readFileSync("src/assets/css/style.css", "utf8")));
   eleventyConfig.addPassthroughCopy("src/assets/{images,fonts,icons}");
+  eleventyConfig.addPassthroughCopy("src/assets/js/pwa.js");
+  eleventyConfig.addPassthroughCopy("src/sw.js");
   eleventyConfig.addPassthroughCopy({ "src/assets/favicons": "/" });
   eleventyConfig.addPassthroughCopy({ "src/xmit.toml": "xmit.toml" });
   return {

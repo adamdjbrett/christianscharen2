@@ -26,6 +26,11 @@ on = "\\.(?:xml|rss|json|txt|webmanifest|toml)$"
 
 # Security headers on every response.
 [[headers]]
+name = "Cache-Control"
+value = "public, max-age=0, must-revalidate"
+on = "\\.js$"
+
+[[headers]]
 name = "Cross-Origin-Opener-Policy"
 value = "same-origin"
 on = "^/"

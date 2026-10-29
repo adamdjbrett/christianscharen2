@@ -1,0 +1,22 @@
+---
+layout: false
+permalink: /offline.html
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="{{ site.language or 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Offline · {{ site.title }}</title>
+  <style>body{font:1.125rem/1.6 system-ui,sans-serif;max-width:40rem;margin:15vh auto;padding:1.5rem;color:#111;background:#f4f6f9}a{color:inherit}</style>
+</head>
+<body>
+  <main>
+    <h1>You're offline</h1>
+    <p>Reconnect to read {{ site.author.name }}'s website.</p>
+    <p><a href="/">Try the home page again</a></p>
+  </main>
+</body>
+</html>
