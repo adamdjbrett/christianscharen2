@@ -68,7 +68,7 @@ The PWA manifest and service worker load from the footer after the window load e
 
 Cloudflare Email Address Obfuscation remains enabled; its decoder is injected at the edge and its loading is controlled by Cloudflare rather than this build. Cloudflare RUM analytics is disabled. The site includes no analytics beacon, location check, or analytics preconnect.
 
-Every push to `main` runs `.github/workflows/xmit-deploy.yml`: install, test, build, then upload `_site/` to xmit. It needs the repository secret `XMIT_KEY`.
+Every push to `main`, including Chris's Pages CMS saves, runs `.github/workflows/xmit-deploy.yml`: install, test, build, upload `_site/` to xmit, then purge Cloudflare's cache. It needs repository secrets `XMIT_KEY`, `CLOUDFLARE_API_TOKEN` (Cache Purge permission for christianscharen.com), and `CLOUDFLARE_ZONE_ID`. The purge retries transient HTTP failures and requires Cloudflare to return `success: true`. Rapid saves queue the latest build while the current upload and purge finish. Check the deployment badge above for failures; the workflow can also be run manually to redeploy and purge.
 
 ## Metadata
 

@@ -84,3 +84,4 @@ console.log("site smoke test passed");
 await import("./writings.test.mjs");
 await import("./pwa.test.mjs");
 await import("./theme.test.mjs");
+await import("./deploy.test.mjs");
