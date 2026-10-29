@@ -2,8 +2,7 @@
   <style>
     .art { stroke: #666666 }
   </style>
-  <rect width="1000" height="1000" fill="#ffffff"/>
-  <circle class="art" cx="500" cy="500" fill="none" r="408" stroke-width="32"/>
+  <circle class="art" cx="500" cy="500" fill="#ffffff" r="408" stroke-width="32"/>
   <g class="art" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="40">
     <path d="M310 355 H255 V690 H442"/>
     <path d="M558 690 H745 V355 H690"/>

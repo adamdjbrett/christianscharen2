@@ -206,6 +206,7 @@ form label{display:block;margin-block-end:var(--space-xs);color:var(--color-ink)
 .site-footer .land-acknowledgement p{font-size:var(--text-xs);font-style:italic;white-space:normal}
 .land-acknowledgement a{white-space:normal}
 .site-footer p{margin:0;font-size:var(--text-sm)}
+.site-footer .site-credit{font-size:var(--text-2xs);font-style:normal;text-align:center}
 .site-footer a{white-space:nowrap}
 .social-links{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-sm);margin:0;padding:0;list-style:none}
 .social-links li{max-width:none}
