@@ -117,8 +117,11 @@ newsletter:
   button:
     text: Visit Substack
     url: https://substack.com/@christianscharen
-  note: Also I find Substack so frustrating to figure out how to customize so if
-    you have anyone you know who is savvy and would help me, let me know.
+  note: My little Substack on South Prairie (that's my street in Chicago). Writing
+    about my pioneer family story, the violence towards Indigenous people our
+    story left out, and what repair might be needed if we face the full truth. I
+    also write about writing, about theological education, and about people that
+    inspire me.
 speaking:
   id: speaking
   info: Engagements
